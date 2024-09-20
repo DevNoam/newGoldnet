@@ -1,0 +1,25 @@
+To replace EXE data there are some steps that need to be done:
+
+Use ResourceHacker to change the EXE strings (Does not support Hebrew out of the box).
+https://www.angusj.com/resourcehacker/
+Use 'dede' to dump all dmf files when we want to use Hebrew.
+https://www.softpedia.com/get/Programming/Debuggers-Decompilers-Dissasemblers/DeDe.shtml
+Use dfmedit to edit the dmf files.
+https://sourceforge.net/projects/dfmedit/
+Use Lazarus IDE to create Image code for delphi.
+https://www.lazarus-ide.org
+
+Process of replacing an image for an EXE:
+1. Dump all the dmf's files using dede, export the required file to a dmf.
+2. Load the dmf file to dmfedit.
+3. Create a BMP image that is similar to the original file inside the exe in terms of size.
+4. Create a Lazarus project that contains a Timage with the BMP image, and compile to an exe.
+5. Use resource hacker to copy the Image binaries (Picture.data).
+6. Copy the image binary into the bmfedit form by replacing the binaries data.
+7. Export the bmf.
+8. Import the wanted exe to resource hacker.
+9. Replace the form with the new dmf file we generated
+10. Compile a new EXE.
+
+Replacing an image and data is complex process which takes time. But possible with some dedication to the process.
+To sum, We need to create a new Binary image using a new project, copy the binary and replace it with the original exe. since resource hacker doesn't let us edit hebrew forms, we need to use a workaround using dmfedit and dede to make us a dmf files.
