@@ -1,0 +1,17 @@
+{
+    "news":
+        [
+            {
+            "title":"תקלת מטח",
+            "content":"תקלה כללית בהורדת מטח נכון ל{DATE}",
+            "datepublished":"{DATETIME}",
+            "isimportant":false
+            },
+            {
+                "title":"עדכון זמין",
+                "content":"יש ליצור קשר עם בזק בינלאומי",
+                "datepublished":"{TIME}",
+                "isimportant":false
+                }
+        ]
+}

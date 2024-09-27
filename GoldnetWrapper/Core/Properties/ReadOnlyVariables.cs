@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GoldnetWrapper.Core.Properties
+{
+    internal class ReadOnlyVariables
+    {
+        public readonly static string bezeqIntWebsite = "https://bezeqint.net/";
+        public readonly static string newsJsonWebsite = "https://api.noamsapir.me/bezeqint/multibill/news.json";
+        public readonly static string selfServicePortal = "https://bezeqint.net/MultiBill";
+        public readonly static string supportPhone = "1-700-555-222";
+        public readonly static string supportEmail = "ITServicesA@bezeqint.co.il";
+        public readonly static string registryPath = @"Software\Goldnet\Setup";
+
+    }
+}

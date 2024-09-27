@@ -23,23 +23,19 @@ regedit.exe /S "%AppPath%\InstallDependancies\NetworkDrives.reg"
 
 color 0F
 echo Adding catav variables to system var.[0m
-
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager\Environment" /f /v EDIHOST_DIR /t REG_SZ /d "%AppPath%Core\System\account\
-
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager\Environment" /f /v EDIHOST1_DIR /t REG_SZ /d "%AppPath%Core\System\currency\
+setx EDIHOST_DIR "%AppPath%Core\System\account" /M
+setx EDIHOST1_DIR "%AppPath%Core\System\currency" /M
 
 REM Set database path.
 reg add "HKEY_CURRENT_USER\Software\GoldNET\Setup" /f /v DatabaseDir /t REG_SZ /d "%AppPath%Data
 
-set "windir=%WINDIR%\Fonts"
 
-color 0F
 echo Installing fonts...[0m
-
-
+set "fontPath=%AppPath%\Fonts"
+color 0F
 for %%f in ("%AppPath%\InstallDependancies\Fonts\*.fon") do (
-    echo Copying %%~nxf to %windir%...
-    copy /Y "%%f" "%windir%" >nul 2>&1
+    echo Copying %%~nxf to %fontPath%...
+    copy /Y "%%f" "%fontPath%" >nul 2>&1
     if %errorlevel% neq 0 (
         echo Failed to install %%~nxf. Access denied.
     ) else (
@@ -47,17 +43,17 @@ for %%f in ("%AppPath%\InstallDependancies\Fonts\*.fon") do (
     )
 )
 
-REM RESERVED, MOVE THE INTEFRACE EXE TO THE MAIN FOLDER, RESERVED SPACE FOR LATER.
 REM RESERVED, ADD PROGRAM SHORTCUTS TO WINDOWS
 
-color 0F
-echo BDE instllation..[0m
-
-CALL %AppPath%\InstallDependancies\dBASE_BDE.exe /S
 
 color 0F
 echo Hlp installation..[0m
 CALL "%AppPath%\InstallDependancies\hlpInstaller\Install.bat" >nul 2>&1
+
+color 0F
+echo BDE instllation..[0m
+CALL %AppPath%\InstallDependancies\dBASE_BDE.exe /S
+
 
     echo -------------------------------------------------------------------------
     echo If there is no errors above, installation has been completed.
