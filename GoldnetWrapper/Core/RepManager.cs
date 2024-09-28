@@ -9,7 +9,6 @@ namespace GoldnetWrapper.Core
 {
     internal class RepManager
     {
-
         public RepData[] GetEnabledReps()
         {
             //Get reps from current app dir

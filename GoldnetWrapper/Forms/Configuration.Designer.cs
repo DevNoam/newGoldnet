@@ -39,7 +39,7 @@
             this.openExportWizard = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.כללי = new System.Windows.Forms.TabPage();
-            this.SaveButton = new System.Windows.Forms.Button();
+            this.AutoFetchData = new System.Windows.Forms.CheckBox();
             this.tgmsPathSelect = new System.Windows.Forms.Button();
             this.tgmsPath = new System.Windows.Forms.TextBox();
             this.downloadThreadsTGMS = new System.Windows.Forms.NumericUpDown();
@@ -48,6 +48,7 @@
             this.dbPathSelect = new System.Windows.Forms.Button();
             this.dbPath = new System.Windows.Forms.TextBox();
             this.ייצואים = new System.Windows.Forms.TabPage();
+            this.backupExportFiles = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.disabledRepsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,11 +58,7 @@
             this.exportMatah = new System.Windows.Forms.CheckBox();
             this.openRepImportPath = new System.Windows.Forms.Button();
             this.checkBalance = new System.Windows.Forms.CheckBox();
-            this.backupExportFiles = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.AutoFetchData = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.SaveButton = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
@@ -203,10 +200,7 @@
             // 
             // כללי
             // 
-            this.כללי.Controls.Add(this.label12);
             this.כללי.Controls.Add(this.AutoFetchData);
-            this.כללי.Controls.Add(this.label11);
-            this.כללי.Controls.Add(this.label10);
             this.כללי.Controls.Add(this.tgmsPathSelect);
             this.כללי.Controls.Add(this.tgmsPath);
             this.כללי.Controls.Add(label8);
@@ -230,16 +224,16 @@
             this.כללי.Text = "כללי";
             this.כללי.UseVisualStyleBackColor = true;
             // 
-            // SaveButton
+            // AutoFetchData
             // 
-            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(205, 429);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(106, 29);
-            this.SaveButton.TabIndex = 38;
-            this.SaveButton.Text = "שמירה";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.AutoFetchData.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.AutoFetchData.AutoSize = true;
+            this.AutoFetchData.Location = new System.Drawing.Point(141, 242);
+            this.AutoFetchData.Name = "AutoFetchData";
+            this.AutoFetchData.Size = new System.Drawing.Size(160, 17);
+            this.AutoFetchData.TabIndex = 48;
+            this.AutoFetchData.Text = "משיכת נתונים אוטומאטית";
+            this.AutoFetchData.UseVisualStyleBackColor = true;
             // 
             // tgmsPathSelect
             // 
@@ -267,11 +261,6 @@
             // 
             this.downloadThreadsTGMS.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.downloadThreadsTGMS.Location = new System.Drawing.Point(118, 216);
-            this.downloadThreadsTGMS.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
             this.downloadThreadsTGMS.Minimum = new decimal(new int[] {
             1,
             0,
@@ -306,7 +295,6 @@
             this.EDIBoxID.ReadOnly = true;
             this.EDIBoxID.Size = new System.Drawing.Size(178, 20);
             this.EDIBoxID.TabIndex = 30;
-            this.EDIBoxID.Text = "ZAHAVBOXID";
             this.EDIBoxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // dbPathSelect
@@ -351,6 +339,17 @@
             this.ייצואים.TabIndex = 1;
             this.ייצואים.Text = "ייצואים";
             this.ייצואים.UseVisualStyleBackColor = true;
+            // 
+            // backupExportFiles
+            // 
+            this.backupExportFiles.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.backupExportFiles.AutoSize = true;
+            this.backupExportFiles.Location = new System.Drawing.Point(185, 332);
+            this.backupExportFiles.Name = "backupExportFiles";
+            this.backupExportFiles.Size = new System.Drawing.Size(116, 17);
+            this.backupExportFiles.TabIndex = 47;
+            this.backupExportFiles.Text = "גיבוי קבצי ייצוא";
+            this.backupExportFiles.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -433,6 +432,7 @@
             this.openRepImportPath.TabIndex = 20;
             this.openRepImportPath.Text = "פתח תיקיית ייבוא REP";
             this.openRepImportPath.UseVisualStyleBackColor = true;
+            this.openRepImportPath.Click += new System.EventHandler(this.openRepImportPath_Click);
             // 
             // checkBalance
             // 
@@ -445,57 +445,16 @@
             this.checkBalance.Text = "בדיקת יתרות לפני ייצוא";
             this.checkBalance.UseVisualStyleBackColor = true;
             // 
-            // backupExportFiles
+            // SaveButton
             // 
-            this.backupExportFiles.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.backupExportFiles.AutoSize = true;
-            this.backupExportFiles.Location = new System.Drawing.Point(185, 332);
-            this.backupExportFiles.Name = "backupExportFiles";
-            this.backupExportFiles.Size = new System.Drawing.Size(116, 17);
-            this.backupExportFiles.TabIndex = 47;
-            this.backupExportFiles.Text = "גיבוי קבצי ייצוא";
-            this.backupExportFiles.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(126, 94);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(164, 13);
-            this.label10.TabIndex = 38;
-            this.label10.Text = "GET IT FROM APP.PROPETIES";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(126, 223);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(164, 13);
-            this.label11.TabIndex = 39;
-            this.label11.Text = "GET IT FROM APP.PROPETIES";
-            // 
-            // AutoFetchData
-            // 
-            this.AutoFetchData.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.AutoFetchData.AutoSize = true;
-            this.AutoFetchData.Location = new System.Drawing.Point(141, 242);
-            this.AutoFetchData.Name = "AutoFetchData";
-            this.AutoFetchData.Size = new System.Drawing.Size(160, 17);
-            this.AutoFetchData.TabIndex = 48;
-            this.AutoFetchData.Text = "משיכת נתונים אוטומאטית";
-            this.AutoFetchData.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(117, 246);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 13);
-            this.label12.TabIndex = 49;
-            this.label12.Text = "IMPLEMENT";
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveButton.Location = new System.Drawing.Point(205, 429);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(106, 29);
+            this.SaveButton.TabIndex = 38;
+            this.SaveButton.Text = "שמירה";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // Configuration
             // 
@@ -546,9 +505,6 @@
         private System.Windows.Forms.FlowLayoutPanel disabledRepsPanel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox backupExportFiles;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox AutoFetchData;
     }
 }

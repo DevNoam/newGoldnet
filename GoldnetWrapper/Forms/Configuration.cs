@@ -4,50 +4,56 @@ using GoldnetWrapper.Core.UserControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace GoldnetWrapper.Forms
 {
     public partial class Configuration : Form
     {
-        RepManager repManager;
-        RegistryHelper registryHelper;
-        RegistryVariables registryVariables = new RegistryVariables();
+        private RepManager repManager;
+
+        private FileSystemWatcher configWatcher;
+        private FileSystemWatcher folderWatcher;
         public Configuration()
         {
             InitializeComponent();
+            repManager = new RepManager();
+
             LoadSettings();
-
-
-            ListenToChanges();
+            StartWatchers();
+            this.FormClosing += ConfigClose;
+        }
+        private void ConfigClose(object sender, FormClosingEventArgs e)
+        {
+            if (configWatcher != null) configWatcher.Dispose();
+            if (folderWatcher != null) folderWatcher.Dispose();
         }
 
         private void LoadSettings()
-        { 
-            repManager = new RepManager();
-            registryHelper = new RegistryHelper();
+        {
+            RegistryHelper.LoadVariables();
+            TGMSManager.LoadProperties();
             DisplayReps();
 
-            registryVariables.DatabaseDir = RegistryHelper.GetValue("DatabaseDir").ToString();
-            registryVariables.TGMSPath = RegistryHelper.GetValue("TGMSPath").ToString();
-            //Read 1 or 0 from registry and convert to bool
-            registryVariables.CheckBalance = RegistryHelper.GetValue("CheckBalance").ToString() == "1" ? true : false;
-            registryVariables.BackupExport = RegistryHelper.GetValue("BackupExport").ToString() == "1" ? true : false;
-            registryVariables.RawExportECurency = RegistryHelper.GetValue("RawExportECurency").ToString() == "1" ? true : false;
-            registryVariables.RawCurrencyDir = RegistryHelper.GetValue("RawCurrencyDir").ToString();
-            registryVariables.UserName = RegistryHelper.GetValue("UserName").ToString();
-            
-            //Write values to the form
-            dbPath.Text = registryVariables.DatabaseDir;
-            tgmsPath.Text = registryVariables.TGMSPath;
-            checkBalance.Checked = registryVariables.CheckBalance;
-            backupExportFiles.Checked = registryVariables.BackupExport;
-            exportMatah.Checked = registryVariables.RawExportECurency;
-            matahFile.Text = registryVariables.RawCurrencyDir;
-            EDIBoxID.Text = registryVariables.UserName;
 
+            //Write values to the form
+            dbPath.Text = RegistryVariables.DatabaseDir;
+            tgmsPath.Text = RegistryVariables.TGMSPath;
+            checkBalance.Checked = RegistryVariables.CheckBalance;
+            backupExportFiles.Checked = RegistryVariables.BackupExport;
+            exportMatah.Checked = RegistryVariables.RawExportECurency;
+            matahFile.Text = RegistryVariables.RawCurrencyDir;
+            EDIBoxID.Text = RegistryVariables.EDIUsername;
+            AutoFetchData.Checked = RegistryVariables.AutoFetchData;
+            downloadThreadsTGMS.Value = RegistryVariables.downloadThreadsTGMS < downloadThreadsTGMS.Minimum ? downloadThreadsTGMS.Minimum :
+                                         (RegistryVariables.downloadThreadsTGMS > downloadThreadsTGMS.Maximum ? downloadThreadsTGMS.Maximum :
+                                         RegistryVariables.downloadThreadsTGMS);
             enableMatahPath();
         }
+
         private void SaveSettings()
         {
             string DatabaseDir = dbPath.Text;
@@ -55,24 +61,63 @@ namespace GoldnetWrapper.Forms
             bool CheckBalance = checkBalance.Checked;
             bool BackupExport = backupExportFiles.Checked;
             bool RawExportECurency = exportMatah.Checked;
+            bool AutoFetchData = this.AutoFetchData.Checked;
             string RawCurrencyDir = matahFile.Text;
-            string UserName = EDIBoxID.Text;
+            int DownloadThreads = Convert.ToInt32(downloadThreadsTGMS.Value);
 
-            if(DatabaseDir != registryVariables.DatabaseDir)
-                RegistryHelper.SetValue("DatabaseDir", DatabaseDir);
-            if(TGMSPath != registryVariables.TGMSPath)
+            int changesMade = 0;
+            if (tgmsPath.Text != RegistryVariables.TGMSPath)
+            {
                 RegistryHelper.SetValue("TGMSPath", TGMSPath);
-            if(CheckBalance != registryVariables.CheckBalance)
+                changesMade++;
+            }
+            if (dbPath.Text != RegistryVariables.DatabaseDir)
+            {
+                RegistryHelper.SetValue("DatabaseDir", DatabaseDir);
+                TGMSManager.SetEDIReceiveLocation(DatabaseDir);
+                changesMade++;
+            }
+            if (DownloadThreads != RegistryVariables.downloadThreadsTGMS)
+            {
+                if (TGMSManager.EditAppPropertiesKey("download-threads-number", DownloadThreads.ToString()))
+                { 
+                    RegistryVariables.downloadThreadsTGMS = DownloadThreads;
+                    changesMade++;
+                }
+            }
+            if (CheckBalance != RegistryVariables.CheckBalance)
+            { 
                 RegistryHelper.SetValue("CheckBalance", (bool)CheckBalance ? "1" : "0");
-            if(BackupExport != registryVariables.BackupExport)
+                changesMade++;
+            }
+            if (BackupExport != RegistryVariables.BackupExport)
+            { 
                 RegistryHelper.SetValue("BackupExport", (bool)BackupExport ? "1" : "0");
-            if(RawExportECurency != registryVariables.RawExportECurency)
+                changesMade++;
+            }
+            if (RawExportECurency != RegistryVariables.RawExportECurency)
+            { 
                 RegistryHelper.SetValue("RawExportECurency", (bool)RawExportECurency ? "1" : "0");
-            if(RawCurrencyDir != registryVariables.RawCurrencyDir)
+                changesMade++;
+            }
+            if (RawCurrencyDir != RegistryVariables.RawCurrencyDir)
+            { 
                 RegistryHelper.SetValue("RawCurrencyDir", RawCurrencyDir);
-            if(UserName != registryVariables.UserName)
-                RegistryHelper.SetValue("UserName", UserName);
-            MessageBox.Show("Saved");
+                changesMade++;
+            }
+            if (AutoFetchData != RegistryVariables.AutoFetchData)
+            { 
+                RegistryHelper.SetValue("AutoFetchData", (bool)AutoFetchData ? "1" : "0");
+                changesMade++;
+            }
+
+            if(changesMade > 0)
+            {
+                //Reload the regedit vars to the RegistryVariables class.
+                RegistryHelper.LoadVariables();
+                MessageBox.Show("Saved");
+            }
+            this.Close();
         }
 
         private void DisplayReps()
@@ -94,13 +139,106 @@ namespace GoldnetWrapper.Forms
             }
         }
 
-        private void ListenToChanges()
-        { 
-            //Listen to App.Properties changes
-            //Listen to RepBank folder changes
-            //Listen to MainFolder changes
+        private void StartWatchers()
+        {
+            Task.Run(() =>
+            {
+                // Start the config file watcher
+                StartConfigWatcher();
+
+                // Start the RepBank folder watcher
+                StartRepBankWatcher();
+            });
         }
-        
+
+        private void StartConfigWatcher()
+        {
+            if (System.IO.File.Exists(Path.Combine(RegistryVariables.TGMSPath, ReadOnlyVariables.appConfig)))
+            {
+                using (var configWatcher = new FileSystemWatcher(RegistryVariables.TGMSPath, ReadOnlyVariables.appConfig))
+                {
+                    configWatcher.NotifyFilter = NotifyFilters.LastWrite;
+                    configWatcher.Changed += (sender, e) => InvokeSafely(TGMSConfChanged);
+                    configWatcher.EnableRaisingEvents = true;
+
+                    // Keep this task running while watching for changes
+                    while (true)
+                    {
+                        Thread.Sleep(100); // Prevent task from exiting
+                    }
+                }
+            }
+
+            MessageBox.Show("TGMS app.properties not found!");
+            return;
+        }
+
+        private void StartRepBankWatcher()
+        {
+            string repBankFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RepBank");
+            if (!Directory.Exists(repBankFolderPath))
+            {
+                Directory.CreateDirectory(repBankFolderPath); // Create the folder if it doesn't exist
+            }
+
+            using (var folderWatcher = new FileSystemWatcher(repBankFolderPath))
+            {
+                folderWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.LastWrite;
+                folderWatcher.IncludeSubdirectories = true;
+
+                // Common handler for all events in RepBank
+                folderWatcher.Changed += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
+                folderWatcher.Created += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
+                folderWatcher.Deleted += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
+                folderWatcher.Renamed += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
+
+                folderWatcher.EnableRaisingEvents = true;
+
+                // Keep this task running while watching for changes
+                while (true)
+                {
+                    Thread.Sleep(100); // Prevent task from exiting
+                }
+            }
+        }
+
+        /// <summary>
+        /// Invoke using the UI Thread
+        /// </summary>
+        /// <param name="action"></param>
+        private void InvokeSafely(Action action)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
+        private void TGMSConfChanged()
+        {
+            TGMSManager.LoadProperties(); // Reload properties
+
+            // Update UI controls
+            if (EDIBoxID.Text != RegistryVariables.EDIUsername)
+                EDIBoxID.Text = RegistryVariables.EDIUsername;
+
+            if (Convert.ToInt32(downloadThreadsTGMS.Value) != RegistryVariables.downloadThreadsTGMS)
+                downloadThreadsTGMS.Value = RegistryVariables.downloadThreadsTGMS < downloadThreadsTGMS.Minimum ? downloadThreadsTGMS.Minimum :
+                                             (RegistryVariables.downloadThreadsTGMS > downloadThreadsTGMS.Maximum ? downloadThreadsTGMS.Maximum :
+                                             RegistryVariables.downloadThreadsTGMS);
+        }
+
+        private void ShowFileChangeMessage(FileSystemEventArgs e)
+        {
+            MessageBox.Show($"File '{e.Name}' in RepBank folder was {e.ChangeType}.");
+            //Reload reps
+            DisplayReps();
+        }
+
 
 
         private void updateSSH_Click(object sender, EventArgs e) => TGMSManager.UpdateSSH();
@@ -121,6 +259,7 @@ namespace GoldnetWrapper.Forms
 
             //If path has no childs, ask user if he wants to create a new db
 
+
         }
 
         private void tgmsPathSelect_Click(object sender, EventArgs e)
@@ -140,8 +279,20 @@ namespace GoldnetWrapper.Forms
 
         private void selectMatahFile_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            matahFile.Text = string.Empty;
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "Select currency export file";
+                saveFileDialog.CheckPathExists = true;
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|Data files (*.dat)|*.dat|All files (*.*)|*.*";
+                saveFileDialog.DefaultExt = "dat"; // Set default extension
+                saveFileDialog.FileName = "raw";
+
+                // Show the dialog and check if the user clicked OK
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    matahFile.Text = saveFileDialog.FileName;
+                }
+            }
         }
 
         private void enableMatahPath()
@@ -149,17 +300,33 @@ namespace GoldnetWrapper.Forms
             if (exportMatah.Checked)
             {
                 matahFile.Enabled = true;
+                selectMatahFile.Enabled = true;
             }
             else
             {
                 matahFile.Enabled = false;
+                selectMatahFile.Enabled = false;
             }
         }
-
+        #region form_buttons
         private void exportMatah_CheckedChanged(object sender, EventArgs e) => enableMatahPath();
         private void openExportWizard_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ExportWizard.bat"));
 
         private void tgmsAppProperties_Click(object sender, EventArgs e) => TGMSManager.OpenTGMSConfig();
         private void SaveButton_Click(object sender, EventArgs e) => SaveSettings();
+        #endregion
+
+        private void openRepImportPath_Click(object sender, EventArgs e)
+        {
+            //if folder is missing, create
+            string path = Path.Combine(Application.StartupPath, "RepBank");
+            if (!Directory.Exists(path))
+            {
+                //Create the folder if it doesn't exist
+                Directory.CreateDirectory(path); 
+            }
+            //Open the dir 
+            Helpers.RunExternalApp(path);
+        }
     }
 }

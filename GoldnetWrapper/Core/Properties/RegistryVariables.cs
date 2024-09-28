@@ -2,12 +2,16 @@
 {
     public class RegistryVariables
     {
-        public string UserName { get; set; }
-        public string TGMSPath { get; set; }
-        public string DatabaseDir { get; set; }
-        public bool CheckBalance { get; set; }
-        public bool BackupExport { get; set; }
-        public bool RawExportECurency { get; set; }
-        public string RawCurrencyDir { get; set; }
+        public static string TGMSPath { get; set; }
+        public static string DatabaseDir { get; set; }
+        public static bool CheckBalance { get; set; }
+        public static bool BackupExport { get; set; }
+        public static bool RawExportECurency { get; set; }
+        public static string RawCurrencyDir { get; set; }
+        public static bool AutoFetchData { get; set; }
+
+        //TGMS Variables:
+        public static string EDIUsername { get; set; }
+        public static int downloadThreadsTGMS { get; set; }
     }
 }

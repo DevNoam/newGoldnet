@@ -1,6 +1,5 @@
 ﻿using GoldnetWrapper.Core.Properties;
 using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 
 public class RegistryHelper
@@ -81,5 +80,20 @@ public class RegistryHelper
         {
             SetValue(kvp.Key, kvp.Value);
         }
+    }
+
+    /// <summary>
+    /// Loads all the variables from the registry into RegistryVariables class
+    /// </summary>
+    public static void LoadVariables()
+    {
+        RegistryVariables.DatabaseDir = RegistryHelper.GetValue("DatabaseDir").ToString();
+        RegistryVariables.TGMSPath = RegistryHelper.GetValue("TGMSPath").ToString();
+        //Read 1 or 0 from registry and convert to bool
+        RegistryVariables.CheckBalance = RegistryHelper.GetValue("CheckBalance").ToString() == "1" ? true : false;
+        RegistryVariables.BackupExport = RegistryHelper.GetValue("BackupExport").ToString() == "1" ? true : false;
+        RegistryVariables.RawExportECurency = RegistryHelper.GetValue("RawExportECurency").ToString() == "1" ? true : false;
+        RegistryVariables.RawCurrencyDir = RegistryHelper.GetValue("RawCurrencyDir").ToString();
+        RegistryVariables.AutoFetchData = RegistryHelper.GetValue("AutoFetchData").ToString() == "1" ? true : false;
     }
 }

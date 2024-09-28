@@ -1,4 +1,5 @@
 ﻿using GoldnetWrapper.Core;
+using GoldnetWrapper.Core.Properties;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -19,7 +20,7 @@ namespace GoldnetWrapper
         private const int SW_SHOW = 5; // Command to show the window
 
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             // Use the application name as the mutex name
             string mutexName = $"{Application.ProductName}Mutex"; // Dynamic mutex name based on app name
@@ -43,11 +44,20 @@ namespace GoldnetWrapper
                     }
                     return; // Exit the current instance
                 }
-
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Main());
             }
+            //Load important data before initializing the rest of the app
+            RegistryHelper.LoadVariables();
+            TGMSManager.LoadProperties();
+            ReadOnlyVariables.tgms_address = TGMSManager.GetPropertyKey("tgms-address");
+            int tgmsPort = 0; 
+            int.TryParse(TGMSManager.GetPropertyKey("tgms-port"), out tgmsPort);
+            ReadOnlyVariables.tgms_port = tgmsPort;
+
+
+            //Initialize the app form
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Main());
         }
     }
 }

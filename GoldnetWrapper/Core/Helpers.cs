@@ -8,14 +8,8 @@ namespace GoldnetWrapper.Core
 {
     static class Helpers
     {
-        public static void OpenURL(string url)
-        {
-            Process.Start(url);
-        }
-        public static void CloseApplication()
-        { 
-            Application.Exit();
-        }
+        public static void OpenURL(string url) => Process.Start(url);
+        public static void CloseApplication() => Application.Exit();
         public static void RunExternalApp(string path)
         {
             try
@@ -26,7 +20,7 @@ namespace GoldnetWrapper.Core
             }
             catch (Exception ex) // Catch any exceptions, like file not found
             {
-                MessageBox.Show($"Failed to start process: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to start {Path.GetFileName(path)}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

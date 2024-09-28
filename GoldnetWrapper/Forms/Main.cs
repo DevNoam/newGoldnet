@@ -23,8 +23,8 @@ namespace GoldnetWrapper
             DisplayWelcomeHeader();
 
             ReadNews();
-            //CHECK REGEDIT IF FETCH ON START ENABLED
-            FetchData();
+            if(RegistryVariables.AutoFetchData)
+                FetchData();
         }
         private void DisplayWelcomeHeader()
         {
@@ -39,27 +39,13 @@ namespace GoldnetWrapper
                 WelcomeHeader.Text = $"ערב טוב,";
         }
 
-        private void Logo_Click(object sender, EventArgs e)
-        {
-            Helpers.OpenURL(ReadOnlyVariables.bezeqIntWebsite);
-        }
+        private void Logo_Click(object sender, EventArgs e) => Helpers.OpenURL(ReadOnlyVariables.bezeqIntWebsite);
 
-        private void ExitApp_Click(object sender, EventArgs e)
-        {
-            Helpers.CloseApplication();
-        }
+        private void ExitApp_Click(object sender, EventArgs e) => Helpers.CloseApplication();
 
-        private void EAccount_Click(object sender, EventArgs e)
-        {
-            //Run EAccount.exe from current directory
-            Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "EAccount.exe"));
-        }
+        private void EAccount_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "EAccount.exe"));
 
-        private void ECurrency_Click(object sender, EventArgs e)
-        {
-            //Run ECurrency.exe from current directory
-            Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ECurrency.exe"));
-        }
+        private void ECurrency_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ECurrency.exe"));
 
         private void GetSupport_Click(object sender, EventArgs e)
         {
@@ -149,14 +135,15 @@ namespace GoldnetWrapper
                             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                             { 
                                 MessageBox.Show("אין חיבור לרשת.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }else if (!CheckInternetConnection("1.1.1.1", 80))  // Replace with your target IP and port
+                            }
+                            else if (!CheckInternetConnection(ReadOnlyVariables.tgms_address, ReadOnlyVariables.tgms_port))  // Replace with your target IP and port
                             {
                                 MessageBox.Show("אין גישה לשרת.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                             else
                             { 
-                                MessageBox.Show("אין אפשרות להתחבר לשרת, יש ליצור קשר.", "תקלת תקשורת", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("אין אפשרות להתחבר עם משתמש זה, יש ליצור קשר.", "תקלת תקשורת", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             //OPEN SUPPORT PAGE
                         }
@@ -282,6 +269,17 @@ namespace GoldnetWrapper
         private void OpenLatestLogFile(object sender, EventArgs e)
         {
             Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "goLog.txt"));
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenAbout_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
         }
     }
 }

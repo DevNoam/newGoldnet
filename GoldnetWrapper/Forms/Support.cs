@@ -2,27 +2,18 @@
 using GoldnetWrapper.Core.Properties;
 using GoldnetWrapper.Core.UserControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GoldnetWrapper
 {
     public partial class Support : Form
     {
-        string ediBox = "ZAHAVID";
         public Support()
         {
             InitializeComponent();
 
             //Get ediBox;
-            EDIId.Text = $"מזהה תיבה: {ediBox}";
+            EDIId.Text = $"מזהה תיבה: {RegistryVariables.EDIUsername}";
             Phone.Text = $"📞: {ReadOnlyVariables.supportPhone}";
             Mail.Text = $"📧: {ReadOnlyVariables.supportEmail}";
 
@@ -46,6 +37,6 @@ namespace GoldnetWrapper
 
         private void Phone_Click(object sender, EventArgs e) => Clipboard.SetText(ReadOnlyVariables.supportPhone);
 
-        private void EDIId_Click(object sender, EventArgs e) => Clipboard.SetText(ediBox);
+        private void EDIId_Click(object sender, EventArgs e) => Clipboard.SetText(RegistryVariables.EDIUsername);
     }
 }

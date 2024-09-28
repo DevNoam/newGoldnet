@@ -44,10 +44,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(102, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(191, 39);
+            this.label1.Size = new System.Drawing.Size(188, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "קבלת תמיכה";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -56,10 +56,10 @@
             // 
             this.Mail.AutoSize = true;
             this.Mail.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Mail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mail.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Mail.Location = new System.Drawing.Point(53, 106);
             this.Mail.Name = "Mail";
-            this.Mail.Size = new System.Drawing.Size(272, 24);
+            this.Mail.Size = new System.Drawing.Size(276, 22);
             this.Mail.TabIndex = 1;
             this.Mail.Text = "ITServicesA@bezeqint.co.il :✉️\r\n";
             this.Mail.Click += new System.EventHandler(this.Mail_Click);
@@ -68,10 +68,10 @@
             // 
             this.Phone.AutoSize = true;
             this.Phone.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Phone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Phone.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Phone.Location = new System.Drawing.Point(110, 80);
             this.Phone.Name = "Phone";
-            this.Phone.Size = new System.Drawing.Size(153, 24);
+            this.Phone.Size = new System.Drawing.Size(163, 22);
             this.Phone.TabIndex = 2;
             this.Phone.Text = "1700-555-222 :📞";
             this.Phone.Click += new System.EventHandler(this.Phone_Click);
@@ -81,10 +81,10 @@
             this.SelfAssistPortal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SelfAssistPortal.AutoSize = true;
             this.SelfAssistPortal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SelfAssistPortal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelfAssistPortal.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelfAssistPortal.Location = new System.Drawing.Point(288, 318);
             this.SelfAssistPortal.Name = "SelfAssistPortal";
-            this.SelfAssistPortal.Size = new System.Drawing.Size(97, 24);
+            this.SelfAssistPortal.Size = new System.Drawing.Size(92, 22);
             this.SelfAssistPortal.TabIndex = 4;
             this.SelfAssistPortal.Text = "שירות עצמי";
             this.SelfAssistPortal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -95,12 +95,12 @@
             this.EDIId.AutoSize = true;
             this.EDIId.BackColor = System.Drawing.SystemColors.Control;
             this.EDIId.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EDIId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EDIId.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EDIId.ForeColor = System.Drawing.Color.Black;
             this.EDIId.Location = new System.Drawing.Point(89, 48);
             this.EDIId.Name = "EDIId";
             this.EDIId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.EDIId.Size = new System.Drawing.Size(217, 24);
+            this.EDIId.Size = new System.Drawing.Size(217, 22);
             this.EDIId.TabIndex = 5;
             this.EDIId.Text = "שם תיבת זהב: BEZEQINT";
             this.EDIId.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -129,7 +129,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(127, 66);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -140,11 +140,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(305, 130);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(83, 17);
+            this.label4.Size = new System.Drawing.Size(76, 16);
             this.label4.TabIndex = 7;
             this.label4.Text = "כל ההודעות";
             // 
