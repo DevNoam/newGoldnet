@@ -1,8 +1,6 @@
 ﻿using GoldnetWrapper.Core.Properties;
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Messaging;
 using System.Windows.Forms;
 
 namespace GoldnetWrapper.Core

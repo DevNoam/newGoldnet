@@ -2,7 +2,6 @@
 using GoldnetWrapper.Core.Properties;
 using GoldnetWrapper.Forms;
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
@@ -85,9 +84,11 @@ namespace GoldnetWrapper
         private void FetchData()
         {
             //Disable buttons
+            string logFilePath = Path.Combine(Application.StartupPath, ReadOnlyVariables.logName);
+            LogMessage($"Log started: {DateTime.Now}", false);
+            
+
             ChangeButtonsState(false);
-
-
             // Step 1: Start the batch file process
             Process batchProcess = new Process();
             batchProcess.StartInfo.FileName = Path.Combine(Application.StartupPath, "go.bat");
@@ -108,7 +109,7 @@ namespace GoldnetWrapper
             timeoutTimer = new System.Timers.Timer(timeoutInterval);
             timeoutTimer.Elapsed += (sender, e) =>
             {
-                if (!isFetchingEnded)
+                if (!isFetchingEnded && !batchProcess.HasExited)
                 {
                     batchProcess.Kill();
                     timeoutTimer.Stop();
@@ -126,6 +127,8 @@ namespace GoldnetWrapper
                     // Reset timer if output is received
                     timeoutTimer.Stop();
                     timeoutTimer.Start();
+
+                    LogMessage(e.Data, true);
 
                     // Toggle display of TGMS logs
                     if (displayTGMSLogs)
@@ -171,6 +174,7 @@ namespace GoldnetWrapper
                     // Step 4: Check if the operation has ended
                     if (e.Data.Contains("Fetching ended"))
                     {
+                        LogMessage($"Log started: {DateTime.Now}", true);
                         isFetchingEnded = true;
                         timeoutTimer.Stop();
                     }
@@ -211,6 +215,22 @@ namespace GoldnetWrapper
                 ECurrency.Enabled = enabled;
                 OpenSettingsButton.Enabled = enabled;
                 OpenSettings.Enabled = enabled;
+            }
+            void LogMessage(string message, bool cleanLog = true)
+            {
+                try
+                {
+                    // Append the message to the fetchLog.txt file
+                    using (StreamWriter writer = new StreamWriter(logFilePath, cleanLog))
+                    {
+                        writer.WriteLine($"{message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle logging errors (optional)
+                    MessageBox.Show($"Failed to log message: {ex.Message}", "Logging Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private static bool CheckInternetConnection(string host, int port)
@@ -266,11 +286,6 @@ namespace GoldnetWrapper
             }
         }
 
-        private void OpenLatestLogFile(object sender, EventArgs e)
-        {
-            Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "goLog.txt"));
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -281,5 +296,19 @@ namespace GoldnetWrapper
             About about = new About();
             about.ShowDialog();
         }
+
+        private void LastFetchLog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process appProcess = new Process();
+                appProcess.StartInfo.FileName = Path.Combine(Application.StartupPath, "fetchLog.txt");
+                appProcess.Start();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(".לא קיים לוג");
+            }
+        } 
     }
 }

@@ -94,7 +94,6 @@ if exist "!DB_PATH!\Currency\Msgs\*.msq" if /i "!EnableECurrency!"=="true" (
  CALL "!dir!\ECurrency.exe" -i "!DB_PATH!\Currency\Msgs\*.msq"
 )
 
-
 echo [1;32mFinish .[0m
-echo LOG: Fetching ended.  
+echo LOG: Fetching ended.
 pause

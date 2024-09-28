@@ -470,7 +470,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "קונפיגורציה";
-            this.TopMost = true;
             this.tabControl1.ResumeLayout(false);
             this.כללי.ResumeLayout(false);
             this.כללי.PerformLayout();

@@ -1,10 +1,8 @@
 ﻿using GoldnetWrapper.Core.Properties;
 using System;
-using System.Data;
-using System.Diagnostics;
 using System.Net;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace GoldnetWrapper.Core
 {
@@ -37,7 +35,7 @@ namespace GoldnetWrapper.Core
 
             try
             {
-                newsResponse = JsonSerializer.Deserialize<NewsResponse>(data);
+                newsResponse = JsonConvert.DeserializeObject<NewsResponse>(data);
             }
             catch (Exception)
             {
@@ -57,7 +55,7 @@ namespace GoldnetWrapper.Core
             NewsResponse newsResponse = null;
             try
             {
-                newsResponse = JsonSerializer.Deserialize<NewsResponse>(data);
+                newsResponse = JsonConvert.DeserializeObject<NewsResponse>(data);
             }
             catch (Exception)
             {

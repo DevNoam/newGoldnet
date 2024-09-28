@@ -44,20 +44,20 @@ namespace GoldnetWrapper
                     }
                     return; // Exit the current instance
                 }
+                //Load important data before initializing the rest of the app
+                RegistryHelper.LoadVariables();
+                TGMSManager.LoadProperties();
+                ReadOnlyVariables.tgms_address = TGMSManager.GetPropertyKey("tgms-address");
+                int tgmsPort = 0; 
+                int.TryParse(TGMSManager.GetPropertyKey("tgms-port"), out tgmsPort);
+                ReadOnlyVariables.tgms_port = tgmsPort;
+
+
+                //Initialize the app form
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Main());
             }
-            //Load important data before initializing the rest of the app
-            RegistryHelper.LoadVariables();
-            TGMSManager.LoadProperties();
-            ReadOnlyVariables.tgms_address = TGMSManager.GetPropertyKey("tgms-address");
-            int tgmsPort = 0; 
-            int.TryParse(TGMSManager.GetPropertyKey("tgms-port"), out tgmsPort);
-            ReadOnlyVariables.tgms_port = tgmsPort;
-
-
-            //Initialize the app form
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
         }
     }
 }

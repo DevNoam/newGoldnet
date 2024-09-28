@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="MultiBill.exe.manifest" size="10417">
+    <dependentAssembly dependencyType="install" codebase="MultiBill.exe.manifest" size="4605">
       <assemblyIdentity name="MultiBill.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="he-IL" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>pkwOTkSsn1YjTvbble9qtpQGx0N9tyezSlJgpYC0Tes=</dsig:DigestValue>
+        <dsig:DigestValue>SyGcM+oaY8JPOieh37B2Qi3VO189zsq1Ecx5xrU6OPA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

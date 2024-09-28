@@ -35,15 +35,6 @@ C:\Users\noam1\Desktop\GoldnetWrapper\obj\Debug\GoldnetWrapper.application
 C:\Users\noam1\Desktop\GoldnetWrapper\obj\Debug\GoldnetW.F2098715.Up2Date
 C:\Users\noam1\Desktop\GoldnetWrapper\obj\Debug\GoldnetWrapper.exe
 C:\Users\noam1\Desktop\GoldnetWrapper\obj\Debug\GoldnetWrapper.pdb
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Buffers.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Memory.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Text.Encodings.Web.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Text.Json.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.ValueTuple.xml
 C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\GoldnetWrapper.csproj.AssemblyReference.cache
 C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\GoldnetWrapper.Core.UserControls.NewsBlock.resources
 C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\GoldnetWrapper.Core.UserControls.RepSelector.resources
@@ -67,5 +58,5 @@ C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\MultiBill.exe.manifes
 C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\MultiBill.application
 C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\MultiBill.exe
 C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\MultiBill.pdb
-C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\obj\Debug\GoldnetWrapper.csproj.Fody.CopyLocal.cache
+C:\Users\noam1\Desktop\newGoldnet\GoldnetWrapper\bin\Debug\Newtonsoft.Json.xml

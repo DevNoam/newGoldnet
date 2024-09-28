@@ -167,7 +167,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "תמיכה";
-            this.TopMost = true;
             this.newsContainer.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

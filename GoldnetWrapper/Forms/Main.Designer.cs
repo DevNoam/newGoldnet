@@ -28,29 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.קובץToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReFetch_Data = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitApp = new System.Windows.Forms.ToolStripMenuItem();
             this.WelcomeHeader = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.NewsContainer = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.NewsText = new System.Windows.Forms.Label();
             this.Logo = new System.Windows.Forms.PictureBox();
             this.EAccount = new System.Windows.Forms.PictureBox();
             this.ECurrency = new System.Windows.Forms.PictureBox();
             this.GetSupport = new System.Windows.Forms.Button();
             this.OpenSettingsButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.לוגמשיכהToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.NewsContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ECurrency)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -74,7 +76,7 @@
             this.ReFetch_Data,
             this.OpenSettings,
             this.OpenAbout,
-            this.toolStripSeparator1,
+            this.toolStripSeparator2,
             this.ExitApp});
             this.קובץToolStripMenuItem.Name = "קובץToolStripMenuItem";
             this.קובץToolStripMenuItem.Size = new System.Drawing.Size(56, 22);
@@ -83,33 +85,30 @@
             // ReFetch_Data
             // 
             this.ReFetch_Data.Name = "ReFetch_Data";
-            this.ReFetch_Data.Size = new System.Drawing.Size(146, 22);
+            this.ReFetch_Data.Size = new System.Drawing.Size(180, 22);
             this.ReFetch_Data.Text = "משיכת נתונים";
             this.ReFetch_Data.Click += new System.EventHandler(this.ReFetch_Data_Click);
             // 
             // OpenSettings
             // 
+            this.OpenSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.לוגמשיכהToolStripMenuItem});
             this.OpenSettings.Name = "OpenSettings";
-            this.OpenSettings.Size = new System.Drawing.Size(146, 22);
+            this.OpenSettings.Size = new System.Drawing.Size(180, 22);
             this.OpenSettings.Text = "הגדרות";
             this.OpenSettings.Click += new System.EventHandler(this.OpenSettings_Click);
             // 
             // OpenAbout
             // 
             this.OpenAbout.Name = "OpenAbout";
-            this.OpenAbout.Size = new System.Drawing.Size(146, 22);
+            this.OpenAbout.Size = new System.Drawing.Size(180, 22);
             this.OpenAbout.Text = "אודות";
             this.OpenAbout.Click += new System.EventHandler(this.OpenAbout_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
             // 
             // ExitApp
             // 
             this.ExitApp.Name = "ExitApp";
-            this.ExitApp.Size = new System.Drawing.Size(146, 22);
+            this.ExitApp.Size = new System.Drawing.Size(180, 22);
             this.ExitApp.Text = "יציאה";
             this.ExitApp.Click += new System.EventHandler(this.ExitApp_Click);
             // 
@@ -148,6 +147,18 @@
             this.NewsContainer.Size = new System.Drawing.Size(528, 51);
             this.NewsContainer.TabIndex = 14;
             this.NewsContainer.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBox1.BackColor = System.Drawing.Color.Firebrick;
+            this.pictureBox1.BackgroundImage = global::MultiBill.Properties.Resources.icons8_info_150;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(46, 51);
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
             // 
             // NewsText
             // 
@@ -236,17 +247,17 @@
             this.OpenSettingsButton.UseVisualStyleBackColor = false;
             this.OpenSettingsButton.Click += new System.EventHandler(this.OpenSettingsButton_Click);
             // 
-            // pictureBox1
+            // toolStripSeparator2
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pictureBox1.BackColor = System.Drawing.Color.Firebrick;
-            this.pictureBox1.BackgroundImage = global::MultiBill.Properties.Resources.icons8_info_150;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(46, 51);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // לוגמשיכהToolStripMenuItem
+            // 
+            this.לוגמשיכהToolStripMenuItem.Name = "לוגמשיכהToolStripMenuItem";
+            this.לוגמשיכהToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.לוגמשיכהToolStripMenuItem.Text = "לוג משיכה";
+            this.לוגמשיכהToolStripMenuItem.Click += new System.EventHandler(this.LastFetchLog_Click);
             // 
             // Main
             // 
@@ -265,6 +276,7 @@
             this.Font = new System.Drawing.Font("Roboto", 8.25F);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(0, 4, 0, 4);
             this.MaximizeBox = false;
@@ -275,10 +287,10 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.NewsContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ECurrency)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,7 +302,6 @@
         private System.Windows.Forms.ToolStripMenuItem קובץToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenSettings;
         private System.Windows.Forms.ToolStripMenuItem OpenAbout;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ExitApp;
         private System.Windows.Forms.Label WelcomeHeader;
         private System.Windows.Forms.PictureBox ECurrency;
@@ -303,6 +314,8 @@
         private System.Windows.Forms.Button GetSupport;
         private System.Windows.Forms.Button OpenSettingsButton;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem לוגמשיכהToolStripMenuItem;
     }
 }
 
