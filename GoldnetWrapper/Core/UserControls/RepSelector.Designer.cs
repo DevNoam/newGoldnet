@@ -38,10 +38,9 @@
             // 
             this.repName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.repName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repName.Location = new System.Drawing.Point(22, 7);
-            this.repName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.repName.Location = new System.Drawing.Point(16, 6);
             this.repName.Name = "repName";
-            this.repName.Size = new System.Drawing.Size(86, 31);
+            this.repName.Size = new System.Drawing.Size(64, 25);
             this.repName.TabIndex = 0;
             this.repName.Text = "REPNAME";
             // 
@@ -51,9 +50,8 @@
             this.enableOrDisableRep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.enableOrDisableRep.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.enableOrDisableRep.Location = new System.Drawing.Point(0, 0);
-            this.enableOrDisableRep.Margin = new System.Windows.Forms.Padding(4);
             this.enableOrDisableRep.Name = "enableOrDisableRep";
-            this.enableOrDisableRep.Size = new System.Drawing.Size(25, 38);
+            this.enableOrDisableRep.Size = new System.Drawing.Size(19, 31);
             this.enableOrDisableRep.TabIndex = 1;
             this.enableOrDisableRep.Text = "-";
             this.enableOrDisableRep.UseVisualStyleBackColor = true;
@@ -62,10 +60,9 @@
             // exportPath
             // 
             this.exportPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportPath.Location = new System.Drawing.Point(104, 5);
-            this.exportPath.Margin = new System.Windows.Forms.Padding(4);
+            this.exportPath.Location = new System.Drawing.Point(78, 4);
             this.exportPath.Name = "exportPath";
-            this.exportPath.Size = new System.Drawing.Size(227, 30);
+            this.exportPath.Size = new System.Drawing.Size(171, 26);
             this.exportPath.TabIndex = 2;
             this.exportPath.Leave += new System.EventHandler(this.exportPath_Leave);
             // 
@@ -73,11 +70,10 @@
             // 
             this.repSelectPath.Dock = System.Windows.Forms.DockStyle.Right;
             this.repSelectPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.repSelectPath.Font = new System.Drawing.Font("MS Reference Specialty", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repSelectPath.Location = new System.Drawing.Point(339, 0);
-            this.repSelectPath.Margin = new System.Windows.Forms.Padding(4);
+            this.repSelectPath.Font = new System.Drawing.Font("Niagara Solid", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repSelectPath.Location = new System.Drawing.Point(254, 0);
             this.repSelectPath.Name = "repSelectPath";
-            this.repSelectPath.Size = new System.Drawing.Size(35, 38);
+            this.repSelectPath.Size = new System.Drawing.Size(26, 31);
             this.repSelectPath.TabIndex = 3;
             this.repSelectPath.Text = "...";
             this.repSelectPath.UseVisualStyleBackColor = true;
@@ -85,15 +81,14 @@
             // 
             // RepSelector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.repSelectPath);
             this.Controls.Add(this.exportPath);
             this.Controls.Add(this.enableOrDisableRep);
             this.Controls.Add(this.repName);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RepSelector";
-            this.Size = new System.Drawing.Size(374, 38);
+            this.Size = new System.Drawing.Size(280, 31);
             this.ResumeLayout(false);
             this.PerformLayout();
 

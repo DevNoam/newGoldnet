@@ -4,6 +4,8 @@ using GoldnetWrapper.Core.UserControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -57,7 +59,7 @@ namespace GoldnetWrapper.Forms
 
         private void SaveSettings()
         {
-            string DatabaseDir = dbPath.Text;
+            dbPath.Text = string.IsNullOrWhiteSpace(dbPath.Text) ? string.Empty : Regex.Replace(dbPath.Text.Replace(" ", "").TrimEnd('\\'), @"\\{2,}", @"\"); string DatabaseDir = dbPath.Text;
             string TGMSPath = tgmsPath.Text;
             bool CheckBalance = checkBalance.Checked;
             bool BackupExport = backupExportFiles.Checked;
@@ -116,7 +118,6 @@ namespace GoldnetWrapper.Forms
             {
                 //Reload the regedit vars to the RegistryVariables class.
                 RegistryHelper.LoadVariables();
-                MessageBox.Show("Saved");
             }
             repManager.SaveReps();
             this.Close();

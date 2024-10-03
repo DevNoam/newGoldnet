@@ -218,7 +218,7 @@
             this.כללי.Controls.Add(this.tgmsAppProperties);
             this.כללי.Location = new System.Drawing.Point(4, 22);
             this.כללי.Name = "כללי";
-            this.כללי.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.כללי.Padding = new System.Windows.Forms.Padding(3);
             this.כללי.Size = new System.Drawing.Size(312, 441);
             this.כללי.TabIndex = 0;
             this.כללי.Text = "כללי";
@@ -334,7 +334,7 @@
             this.ייצואים.Controls.Add(this.checkBalance);
             this.ייצואים.Location = new System.Drawing.Point(4, 22);
             this.ייצואים.Name = "ייצואים";
-            this.ייצואים.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.ייצואים.Padding = new System.Windows.Forms.Padding(3);
             this.ייצואים.Size = new System.Drawing.Size(312, 441);
             this.ייצואים.TabIndex = 1;
             this.ייצואים.Text = "ייצואים";

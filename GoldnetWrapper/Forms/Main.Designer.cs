@@ -40,16 +40,14 @@
             this.WelcomeHeader = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.NewsContainer = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.NewsText = new System.Windows.Forms.Label();
             this.Logo = new System.Windows.Forms.PictureBox();
             this.EAccount = new System.Windows.Forms.PictureBox();
             this.ECurrency = new System.Windows.Forms.PictureBox();
-            this.GetSupport = new System.Windows.Forms.Button();
-            this.OpenSettingsButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.OpenSettingsButton = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.NewsContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ECurrency)).BeginInit();
@@ -150,7 +148,6 @@
             // NewsContainer
             // 
             this.NewsContainer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.NewsContainer.Controls.Add(this.pictureBox1);
             this.NewsContainer.Controls.Add(this.NewsText);
             this.NewsContainer.ForeColor = System.Drawing.SystemColors.Info;
             this.NewsContainer.Location = new System.Drawing.Point(127, 417);
@@ -160,18 +157,6 @@
             this.NewsContainer.TabIndex = 14;
             this.NewsContainer.Visible = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pictureBox1.BackColor = System.Drawing.Color.Firebrick;
-            this.pictureBox1.BackgroundImage = global::MultiBill.Properties.Resources.icons8_info_150;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(46, 51);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // NewsText
             // 
             this.NewsText.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -180,10 +165,10 @@
             this.NewsText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NewsText.Font = new System.Drawing.Font("Arial", 15F);
             this.NewsText.ForeColor = System.Drawing.Color.White;
-            this.NewsText.Location = new System.Drawing.Point(49, 0);
+            this.NewsText.Location = new System.Drawing.Point(0, 0);
             this.NewsText.Margin = new System.Windows.Forms.Padding(0);
             this.NewsText.Name = "NewsText";
-            this.NewsText.Size = new System.Drawing.Size(479, 53);
+            this.NewsText.Size = new System.Drawing.Size(528, 53);
             this.NewsText.TabIndex = 11;
             this.NewsText.Text = "טקסט תקלה";
             this.NewsText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -233,30 +218,33 @@
             this.ECurrency.TabStop = false;
             this.ECurrency.Click += new System.EventHandler(this.EAccount_Click);
             // 
-            // GetSupport
+            // label1
             // 
-            this.GetSupport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.GetSupport.BackColor = System.Drawing.SystemColors.Control;
-            this.GetSupport.BackgroundImage = global::MultiBill.Properties.Resources.icons8_headset_94;
-            this.GetSupport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.GetSupport.Location = new System.Drawing.Point(0, 398);
-            this.GetSupport.Name = "GetSupport";
-            this.GetSupport.Size = new System.Drawing.Size(81, 77);
-            this.GetSupport.TabIndex = 15;
-            this.GetSupport.UseVisualStyleBackColor = false;
-            this.GetSupport.Click += new System.EventHandler(this.GetSupport_Click);
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label1.Location = new System.Drawing.Point(6, 436);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(85, 31);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "תמיכה";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.GetSupport_Click);
             // 
             // OpenSettingsButton
             // 
-            this.OpenSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenSettingsButton.BackColor = System.Drawing.SystemColors.Control;
-            this.OpenSettingsButton.BackgroundImage = global::MultiBill.Properties.Resources.icons8_settings_250;
-            this.OpenSettingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.OpenSettingsButton.Location = new System.Drawing.Point(725, 398);
+            this.OpenSettingsButton.AutoSize = true;
+            this.OpenSettingsButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OpenSettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.OpenSettingsButton.Location = new System.Drawing.Point(713, 436);
             this.OpenSettingsButton.Name = "OpenSettingsButton";
-            this.OpenSettingsButton.Size = new System.Drawing.Size(81, 77);
-            this.OpenSettingsButton.TabIndex = 16;
-            this.OpenSettingsButton.UseVisualStyleBackColor = false;
+            this.OpenSettingsButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.OpenSettingsButton.Size = new System.Drawing.Size(94, 31);
+            this.OpenSettingsButton.TabIndex = 18;
+            this.OpenSettingsButton.Text = "הגדרות";
+            this.OpenSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OpenSettingsButton.Click += new System.EventHandler(this.OpenSettingsButton_Click);
             // 
             // Main
@@ -265,7 +253,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(806, 473);
             this.Controls.Add(this.OpenSettingsButton);
-            this.Controls.Add(this.GetSupport);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.NewsContainer);
             this.Controls.Add(this.Logo);
             this.Controls.Add(this.StatusLabel);
@@ -287,7 +275,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.NewsContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ECurrency)).EndInit();
@@ -311,11 +298,10 @@
         private System.Windows.Forms.PictureBox Logo;
         private System.Windows.Forms.Panel NewsContainer;
         private System.Windows.Forms.Label NewsText;
-        private System.Windows.Forms.Button GetSupport;
-        private System.Windows.Forms.Button OpenSettingsButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem לוגמשיכהToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label OpenSettingsButton;
     }
 }
 

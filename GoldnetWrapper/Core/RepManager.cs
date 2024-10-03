@@ -1,45 +1,39 @@
 ﻿using GoldnetWrapper.Core.Properties;
-using System.Collections.Generic;
-using System.Windows.Forms;
+using GoldnetWrapper.Core.UserControls;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using GoldnetWrapper.Core.UserControls;
+using System.Windows.Forms;
 
 public class RepManager : IDisposable
 {
-    private List<RepData> enabledReps = new List<RepData>();
-    private List<RepData> disabledReps = new List<RepData>();
-    private FlowLayoutPanel enabledContainer;
-    private FlowLayoutPanel disabledContainer;
+    private readonly List<RepData> enabledReps = new List<RepData>();
+    private readonly List<RepData> disabledReps = new List<RepData>();
+    private readonly FlowLayoutPanel enabledContainer;
+    private readonly FlowLayoutPanel disabledContainer;
     private FileSystemWatcher fileWatcher;
-    private bool isLoading = false; // Flag to prevent re-entrant loading
+    private bool isLoading;
 
     public RepManager(FlowLayoutPanel enabledContainer, FlowLayoutPanel disabledContainer)
     {
         this.enabledContainer = enabledContainer;
         this.disabledContainer = disabledContainer;
+
         InitializeFileWatcher();
     }
 
     public void LoadReps()
     {
-        // Load REP files from the directory
         var repFiles = Directory.GetFiles(Application.StartupPath, "*.rep");
-
-        // Clear existing lists and containers
-        enabledReps.Clear();
-        disabledReps.Clear();
-        enabledContainer.Controls.Clear();
-        disabledContainer.Controls.Clear();
+        ClearReps();
 
         foreach (var repFile in repFiles)
         {
             var repData = ReadRepFile(repFile);
             if (repData != null)
             {
-                if (repData.Enabled == 1) enabledReps.Add(repData);
-                else disabledReps.Add(repData);
+                (repData.Enabled == 1 ? enabledReps : disabledReps).Add(repData);
             }
         }
 
@@ -67,9 +61,7 @@ public class RepManager : IDisposable
         if (isLoading) return;
 
         isLoading = true;
-
-        // Adding a slight delay to allow the file system to settle
-        System.Threading.Thread.Sleep(100);
+        System.Threading.Thread.Sleep(100); // Delay to let filesystem settle
 
         if (enabledContainer.IsDisposed || disabledContainer.IsDisposed)
         {
@@ -77,52 +69,56 @@ public class RepManager : IDisposable
             return;
         }
 
-        if (enabledContainer.InvokeRequired)
-        {
-            enabledContainer.Invoke((MethodInvoker)(() => HandleFileChange(e)));
-        }
-        else
-        {
-            HandleFileChange(e);
-        }
-
+        SafeInvoke(() => HandleFileChange(e));
         isLoading = false;
+    }
+
+    private void SafeInvoke(Action action)
+    {
+        try
+        {
+            if (enabledContainer.InvokeRequired)
+            {
+                enabledContainer.Invoke((MethodInvoker)(() =>
+                {
+                    if (!enabledContainer.IsDisposed && !disabledContainer.IsDisposed)
+                    {
+                        action();
+                    }
+                }));
+            }
+            else
+            {
+                action();
+            }
+        }
+        catch (ObjectDisposedException)
+        {
+            Console.WriteLine("Containers disposed during invocation.");
+        }
     }
 
     private void HandleFileChange(FileSystemEventArgs e)
     {
-        Console.WriteLine($"File changed: {e.ChangeType}, Path: {e.FullPath}");
+        var filePath = e.FullPath;
 
-        if (Path.GetExtension(e.FullPath).Equals(".rep", StringComparison.OrdinalIgnoreCase))
+        if (Path.GetExtension(filePath).Equals(".rep", StringComparison.OrdinalIgnoreCase))
         {
-            switch (e.ChangeType)
-            {
-                case WatcherChangeTypes.Created:
-                    AddNewRep(e.FullPath);
-                    break;
-                case WatcherChangeTypes.Deleted:
-                    RemoveRep(e.FullPath);
-                    break;
-            }
+            if (e.ChangeType == WatcherChangeTypes.Created) AddNewRep(filePath);
+            else if (e.ChangeType == WatcherChangeTypes.Deleted) RemoveRep(filePath);
         }
     }
 
     private void AddNewRep(string fullPath)
     {
         var newRepData = ReadRepFile(fullPath);
-        if (newRepData != null)
-        {
-            if (newRepData.Enabled == 1)
-            {
-                enabledReps.Add(newRepData);
-                AddRepsToContainer(new List<RepData> { newRepData }, enabledContainer);
-            }
-            else
-            {
-                disabledReps.Add(newRepData);
-                AddRepsToContainer(new List<RepData> { newRepData }, disabledContainer);
-            }
-        }
+        if (newRepData == null) return;
+
+        var targetList = newRepData.Enabled == 1 ? enabledReps : disabledReps;
+        var targetContainer = newRepData.Enabled == 1 ? enabledContainer : disabledContainer;
+
+        targetList.Add(newRepData);
+        AddRepsToContainer(new List<RepData> { newRepData }, targetContainer);
     }
 
     private void RemoveRep(string fullPath)
@@ -131,19 +127,13 @@ public class RepManager : IDisposable
         var repToRemove = enabledReps.FirstOrDefault(rep => rep.repName == repName) ??
                           disabledReps.FirstOrDefault(rep => rep.repName == repName);
 
-        if (repToRemove != null)
-        {
-            if (repToRemove.Enabled == 1)
-            {
-                enabledReps.Remove(repToRemove);
-                RefreshContainer(enabledContainer, enabledReps);
-            }
-            else
-            {
-                disabledReps.Remove(repToRemove);
-                RefreshContainer(disabledContainer, disabledReps);
-            }
-        }
+        if (repToRemove == null) return;
+
+        var targetList = repToRemove.Enabled == 1 ? enabledReps : disabledReps;
+        var targetContainer = repToRemove.Enabled == 1 ? enabledContainer : disabledContainer;
+
+        targetList.Remove(repToRemove);
+        RefreshContainer(targetContainer, targetList);
     }
 
     private void RefreshContainer(FlowLayoutPanel container, List<RepData> reps)
@@ -152,20 +142,20 @@ public class RepManager : IDisposable
         AddRepsToContainer(reps, container);
     }
 
-    private void AddRepsToContainer(List<RepData> reps, FlowLayoutPanel container)
-    {
-        foreach (var rep in reps)
-        {
-            var child = new RepSelector(rep);
-            child.RepStateChanged += OnRepStateChanged;
-            container.Controls.Add(child);
-        }
-    }
-
     private void AddRepsToContainers()
     {
         AddRepsToContainer(enabledReps, enabledContainer);
         AddRepsToContainer(disabledReps, disabledContainer);
+    }
+
+    private void AddRepsToContainer(IEnumerable<RepData> reps, FlowLayoutPanel container)
+    {
+        foreach (var rep in reps)
+        {
+            var repSelector = new RepSelector(rep);
+            repSelector.RepStateChanged += OnRepStateChanged;
+            container.Controls.Add(repSelector);
+        }
     }
 
     private RepData ReadRepFile(string filePath)
@@ -175,14 +165,13 @@ public class RepManager : IDisposable
 
         foreach (var line in lines)
         {
-            if (line.StartsWith("Enabled="))
+            if (line.StartsWith("Enabled=", StringComparison.OrdinalIgnoreCase))
             {
                 repData.Enabled = int.Parse(line.Substring("Enabled=".Length));
             }
-            else if (line.StartsWith("OutputFileName="))
+            else if (line.StartsWith("OutputFileName=", StringComparison.OrdinalIgnoreCase))
             {
-                var outputFilePath = line.Substring("OutputFileName=".Length).Trim();
-                repData.OutputFolder = string.IsNullOrWhiteSpace(outputFilePath) ? string.Empty : Path.GetDirectoryName(outputFilePath);
+                repData.OutputFolder = Path.GetDirectoryName(line.Substring("OutputFileName=".Length).Trim()) ?? string.Empty;
             }
         }
 
@@ -191,57 +180,71 @@ public class RepManager : IDisposable
 
     private void ValidateGNEXPORT()
     {
-        var lines = File.ReadAllLines(Path.Combine(Application.StartupPath, "GNEXPORT.ini")).ToList();
-        if (lines.Count > 0 && lines[0] != "[Exports]")
-        {
-            throw new InvalidOperationException("Invalid GNEXPORT.ini format.");
-        }
+        var gNExportFilePath = Path.Combine(Application.StartupPath, "GNEXPORT.ini");
 
-        var currentExports = lines.Skip(1).Select(line => line.Split('=')[1]).Distinct().ToList();
-        var activeReps = new HashSet<string>(enabledReps.Select(rep => rep.repName).Concat(disabledReps.Select(rep => rep.repName)));
+        if (!File.Exists(gNExportFilePath)) return;
 
-        currentExports.RemoveAll(export => !activeReps.Contains(export));
-        currentExports.AddRange(enabledReps.Where(rep => !currentExports.Contains(rep.repName)).Select(rep => rep.repName));
+        var lines = File.ReadAllLines(gNExportFilePath).ToList();
+        var currentExports = lines.Skip(1).Where(line => line.Contains('=')).Select(line => line.Split('=')[1]).ToList();
+        var activeEnabledReps = new HashSet<string>(enabledReps.Select(rep => rep.repName));
 
-        File.WriteAllLines(Path.Combine(Application.StartupPath, "GNEXPORT.ini"), new[] { "[Exports]" }.Concat(currentExports.Select((name, index) => $"{index}={name}")));
+        currentExports.RemoveAll(export => !activeEnabledReps.Contains(export));
+        currentExports.AddRange(enabledReps.Select(rep => rep.repName).Where(rep => !currentExports.Contains(rep)));
+
+        File.WriteAllLines(gNExportFilePath, new[] { "[Exports]" }.Concat(currentExports.Select((name, i) => $"{i}={name}")));
+
+        // Optional logging
+    }
+
+    private void ClearReps()
+    {
+        enabledReps.Clear();
+        disabledReps.Clear();
+        enabledContainer.Controls.Clear();
+        disabledContainer.Controls.Clear();
     }
 
     public void OnRepStateChanged(object sender, EventArgs e)
     {
         var child = sender as RepSelector;
-        var repData = child.GetRepData();
+        var repData = child?.GetRepData();
+        if (repData == null) return;
 
         if (repData.Enabled == 1)
         {
-            MoveChild(child, disabledContainer, enabledContainer, disabledReps, enabledReps);
+            MoveRep(child, disabledContainer, enabledContainer, disabledReps, enabledReps);
         }
         else
         {
-            MoveChild(child, enabledContainer, disabledContainer, enabledReps, disabledReps);
+            MoveRep(child, enabledContainer, disabledContainer, enabledReps, disabledReps);
         }
     }
 
-    private void MoveChild(RepSelector child, FlowLayoutPanel fromContainer, FlowLayoutPanel toContainer, List<RepData> fromList, List<RepData> toList)
+    private void MoveRep(RepSelector child, FlowLayoutPanel fromContainer, FlowLayoutPanel toContainer, List<RepData> fromList, List<RepData> toList)
     {
         var repData = child.GetRepData();
         fromList.Remove(repData);
         toList.Add(repData);
+
         fromContainer.Controls.Remove(child);
         toContainer.Controls.Add(child);
     }
 
     public void SaveReps()
     {
-        foreach (var rep in enabledReps) SaveRepFile(rep, true);
-        foreach (var rep in disabledReps) SaveRepFile(rep, false);
+        enabledReps.ForEach(rep => SaveRepFile(rep, true));
+        disabledReps.ForEach(rep => SaveRepFile(rep, false));
+
         ValidateGNEXPORT();
     }
 
     private void SaveRepFile(RepData rep, bool isEnabled)
     {
-        string filePath = Path.Combine(Application.StartupPath, $"{rep.repName}.rep");
+        var filePath = Path.Combine(Application.StartupPath, $"{rep.repName}.rep");
         var lines = File.Exists(filePath) ? File.ReadAllLines(filePath).ToList() : new List<string>();
-        bool enabledUpdated = false, outputFileNameUpdated = false;
+
+        var enabledUpdated = false;
+        var outputFileNameUpdated = false;
 
         for (int i = 0; i < lines.Count; i++)
         {
@@ -253,8 +256,7 @@ public class RepManager : IDisposable
             else if (lines[i].StartsWith("OutputFileName="))
             {
                 var currentOutputFileName = lines[i].Substring("OutputFileName=".Length);
-                var newOutputFileName = Path.Combine(rep.OutputFolder, Path.GetFileName(currentOutputFileName));
-                lines[i] = $"OutputFileName={newOutputFileName}";
+                lines[i] = $"OutputFileName={Path.Combine(rep.OutputFolder, Path.GetFileName(currentOutputFileName))}";
                 outputFileNameUpdated = true;
             }
         }

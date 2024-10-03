@@ -105,7 +105,7 @@ namespace GoldnetWrapper
             timeoutTimer = new System.Timers.Timer(timeoutInterval);
             timeoutTimer.Elapsed += (sender, e) =>
             {
-                if (!isFetchingEnded && !batchProcess.HasExited)
+                if (!isFetchingEnded && !batchProcess.HasExited && !StatusLabel.Text.Contains("Importing Mivzaq") && !StatusLabel.Text.Contains("Importing Matah"))
                 {
                     batchProcess.Kill();
                     timeoutTimer.Stop();
@@ -170,7 +170,7 @@ namespace GoldnetWrapper
                     // Step 4: Check if the operation has ended
                     if (e.Data.Contains("Fetching ended"))
                     {
-                        LogMessage($"Log started: {DateTime.Now}", true);
+                        LogMessage($"Log ended: {DateTime.Now}", true);
                         isFetchingEnded = true;
                         timeoutTimer.Stop();
                     }
@@ -247,28 +247,11 @@ namespace GoldnetWrapper
         }
         private static void ShowTimeoutError()
         {
-            DialogResult result = MessageBox.Show(
-                "Operation timed out. What would you like to do?",
-                "Timeout Error",
-                MessageBoxButtons.YesNoCancel,
+            DialogResult result = MessageBox.Show("התהליך נתקע, יש ליצור קשר עם התמיכה.","Timeout Error",
+                MessageBoxButtons.OK,
                 MessageBoxIcon.Warning,
                 MessageBoxDefaultButton.Button1,
                 MessageBoxOptions.DefaultDesktopOnly);
-
-            switch (result)
-            {
-                case DialogResult.Yes:   // Show logs
-                                         // Implement logic to show logs
-                    MessageBox.Show("Displaying log");
-                    break;
-                case DialogResult.No:    // Contact support
-                                         // Implement contact support logic
-                    MessageBox.Show("Contact support.");
-                    break;
-                case DialogResult.Cancel:  // OK button
-                                           // Implement logic for OK
-                    break;
-            }
         }
 
         void ReadNews()

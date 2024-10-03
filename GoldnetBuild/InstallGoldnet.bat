@@ -14,8 +14,8 @@ regedit.exe /S "%AppPath%\InstallDependancies\Registry.reg"
 
 color 0F
 echo Adding catav variables to system var.[0m
-setx EDIHOST_DIR "%AppPath%Core\System\account" /M
-setx EDIHOST1_DIR "%AppPath%Core\System\currency" /M
+setx EDIHOST_DIR "%AppPath%System\account" /M
+setx EDIHOST1_DIR "%AppPath%System\currency" /M
 
 REM Set database path.
 reg add "HKEY_CURRENT_USER\Software\GoldNET\Setup" /f /v DatabaseDir /t REG_SZ /d "%AppPath%Data

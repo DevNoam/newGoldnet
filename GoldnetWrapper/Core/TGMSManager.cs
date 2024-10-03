@@ -1,6 +1,7 @@
 ﻿using GoldnetWrapper.Core.Properties;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GoldnetWrapper.Core
@@ -37,10 +38,10 @@ namespace GoldnetWrapper.Core
         /// <param name="dbPath"></param>
         public static bool SetEDIReceiveLocation(string dbPath)
         {
-            dbPath.Replace(@"\", @"\\");
+            dbPath = dbPath.Replace("\\", "\\\\"); // Replace single backslashes with double backslashes
+            Console.WriteLine(dbPath);
             bool payext = EditAppPropertiesKey("local-dir-service-receive-payext", $@"{dbPath}\\Currency\\In\\");
             bool statac = EditAppPropertiesKey("local-dir-service-receive-statac", $@"{dbPath}\\Mivzaq\\In\\");
-
 
             return payext && statac;
         }
@@ -50,22 +51,26 @@ namespace GoldnetWrapper.Core
             var configFilePath = Path.Combine(RegistryVariables.TGMSPath, ReadOnlyVariables.appConfig);
             if (File.Exists(configFilePath))
             {
-                // Read the file line by line
-                foreach (var line in File.ReadLines(configFilePath))
+                // Using a StreamReader to ensure proper disposal
+                using (var reader = new StreamReader(configFilePath))
                 {
-                    // Split the line into key and value based on the '=' character
-                    var parts = line.Split('=');
-
-                    // Check if the line contains both key and value
-                    if (parts.Length == 2)
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
                     {
-                        var currentKey = parts[0].Trim();
-                        var value = parts[1].Trim();
+                        // Split the line into key and value based on the '=' character
+                        var parts = line.Split('=');
 
-                        // If the current key matches the provided key, return the value
-                        if (currentKey.Equals(key, StringComparison.OrdinalIgnoreCase))
+                        // Check if the line contains both key and value
+                        if (parts.Length == 2)
                         {
-                            return value;
+                            var currentKey = parts[0].Trim();
+                            var value = parts[1].Trim();
+
+                            // If the current key matches the provided key, return the value
+                            if (currentKey.Equals(key, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return value;
+                            }
                         }
                     }
                 }
@@ -74,25 +79,41 @@ namespace GoldnetWrapper.Core
             // Return empty string if the key is not found or file does not exist
             return string.Empty;
         }
+
         public static bool EditAppPropertiesKey(string key, string value)
         {
-            // Get the TGMS path (Assuming RegistryVariables.TGMSPath gives the file path)
             var configFilePath = Path.Combine(RegistryVariables.TGMSPath, ReadOnlyVariables.appConfig);
 
             // Verify if the file exists
-            if (File.Exists(configFilePath))
+            if (!File.Exists(configFilePath))
             {
-                // Read all lines from the file into an array
-                string[] lines = File.ReadAllLines(configFilePath);
+                return false; // Return false if the file does not exist
+            }
 
-                bool keyFound = false;
+            string[] lines;
+            try
+            {
+                // Read all lines from the file into a list
+                lines = File.ReadAllLines(configFilePath);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"Error reading file: {ex.Message}");
+                return false; // Return false if there's an issue reading the file
+            }
 
-                // Open a stream to write the updated lines back
-                using (StreamWriter writer = new StreamWriter(configFilePath))
+            bool keyFound = false;
+
+            // Create a temporary file path
+            string tempFilePath = configFilePath + ".tmp";
+
+            try
+            {
+                using (var writer = new StreamWriter(tempFilePath))
                 {
                     foreach (var line in lines)
                     {
-                        // Split each line into key and value using the '=' delimiter
+                        // Split each line into key and value
                         var parts = line.Split('=');
 
                         if (parts.Length == 2)
@@ -125,11 +146,33 @@ namespace GoldnetWrapper.Core
                         writer.WriteLine($"{key}={value}");
                     }
                 }
-                // Return true to indicate success
-                return true;
+
+                // Replace the original file with the updated temp file
+                File.Delete(configFilePath);
+                File.Move(tempFilePath, configFilePath);
             }
-            // If the file does not exist, return false
-            return false;
+            catch (IOException ex)
+            {
+                Console.WriteLine($"Error writing to file: {ex.Message}");
+                return false; // Return false if there's an issue writing to the file
+            }
+            finally
+            {
+                // Clean up: Delete the temporary file if it exists
+                if (File.Exists(tempFilePath))
+                {
+                    try
+                    {
+                        File.Delete(tempFilePath);
+                    }
+                    catch (IOException ex)
+                    {
+                        Console.WriteLine($"Error deleting temp file: {ex.Message}");
+                    }
+                }
+            }
+
+            return true; // Return true to indicate success
         }
 
         public static void UpdateSSH()

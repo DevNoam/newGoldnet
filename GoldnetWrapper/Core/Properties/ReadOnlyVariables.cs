@@ -10,7 +10,7 @@ namespace GoldnetWrapper.Core.Properties
     {
         public readonly static string bezeqIntWebsite = "https://bezeqint.net/";
         public readonly static string newsJsonWebsite = "https://api.noamsapir.me/bezeqint/multibill/news.json";
-        public readonly static string selfServicePortal = "https://bezeqint.net/MultiBill";
+        public readonly static string selfServicePortal = "https://selfservice.bezeqint.net/web/guest/business-help/applications";
         public readonly static string supportPhone = "1-700-555-222";
         public readonly static string supportEmail = "ITServicesA@bezeqint.co.il";
         public readonly static string registryPath = @"Software\Goldnet\Setup";
@@ -18,6 +18,5 @@ namespace GoldnetWrapper.Core.Properties
         public static string tgms_address = "1.1.1.1";
         public static int tgms_port = 22;
         public static string logName = "fetchLog.txt";
-        public static string repsConfig = "gnexport.ini";
     }
 }
