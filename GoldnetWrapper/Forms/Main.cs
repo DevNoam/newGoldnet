@@ -42,10 +42,6 @@ namespace GoldnetWrapper
 
         private void ExitApp_Click(object sender, EventArgs e) => Helpers.CloseApplication();
 
-        private void EAccount_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "EAccount.exe"));
-
-        private void ECurrency_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ECurrency.exe"));
-
         private void GetSupport_Click(object sender, EventArgs e)
         {
             //replace form
@@ -309,6 +305,9 @@ namespace GoldnetWrapper
             {
                 MessageBox.Show(".לא קיים לוג");
             }
-        } 
+        }
+
+        private void ECurrency_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ECurrency.exe"));
+        private void EAccount_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "EAccount.exe"));
     }
 }

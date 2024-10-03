@@ -1,0 +1,122 @@
+:Base Eaccount.hlp>win2
+:Title Buisnessnet Help
+1 תפריט ראשי
+2 קובץ
+3 יבוא אינפורמציה חדשה=IDH_Import>win2
+3 יצוא תנועות
+4 יצוא תנועות=IDH_Export>win2
+4 הגדרת יצואים חדשים
+5 חלון יצואים קיימים=IDH_NewExportsDefinition
+5 חלון יצוא חדש=IDH_NewExportWindow>win2
+5 חלון מאפייני יצוא
+6 מאפייני יצוא=IDH_ExportPropertiesWindow
+6 תיאור=IDH_DescriptionErea>win2
+6 הפעלה=IDH_ExecutableErea>win2
+6 קובץ פלט=IDH_OutputFileName>win2
+6 סוג בניית קובץ הפלט=IDH_OutputType>win2
+6 שטח הצגת האירועים=IDH_EventsDisplayErea>win2
+6 קופסת סוג האירוע =IDH_TypeComboBox>win2
+6 קופסת סוג הסרגל=IDH_RullerComboBox>win2
+6 חלון סרגל חדש=IDH_NewRulerWindow>win2
+6 חלון הגדרת סרגל
+7 חלון הגדרת סרגל=IDH_RulerDefinitionWindow>win2
+7 שטח תיאור השדות בסרגל=IDH_FieldsDescriptionErea>win2
+7 שם השדה=IDH_FieldName>win2
+7 סוג השדה=IDH_FieldType>win2
+7 מבנה=IDH_Format>win2
+7 תחילית=IDH_Prefix>win2
+7 סיומת=IDH_Suffix>win2
+7 רוחב השדה=IDH_Width>win2
+7 נקודת ייחוס=IDH_Offset>win2
+7 יישור=IDH_Alignment>win2
+2 הדפסה=IDH_Print>win2
+2 בסיס נתונים=IDH_DataBase
+2 יציאה=IDH_Exit>win2
+2 עריכה
+3 הוספת חברה חדשה=IDH_InsertNewCompany>win2
+3 מחיקה=IDH_Delete>win2
+3 שינוי שם=IDH_Rename>win2
+3 סימון הכל כמיוצא/לא מיוצא=IDH_MarkAsExported>win2
+3 תנועה רגילה/חשובה/חריגה=IDH_OperationKind>win2
+3 מצא
+4 מצא=IDH_Find>win2
+4 שטח הצגת הנתונים=IDH_FDataErea>win2
+4 על פי חשבונות
+5 על פי חשבונות=IDH_ByAccounts>win2
+5 חשבונות זמינים=IDH_FAvailableAccounts>win2
+5 חשבונות בחורים=IDH_FSelectedAccounts>win2
+4 בין תאריכים
+5 בין תאריכים=IDH_BetweenDates>win2
+5 הכל=IDH_All>win2
+5 בין...לבין...=IDH_BetweenDatesRange
+5 במהלך הימים/החודשים האחרונים=IDH_DuringTheLast>win2
+4 לפי סטטוסים
+5 לפי סטטוסים=IDH_ByStatuses>win2
+4 לפי מלל בתיאור
+5 לפי מלל בתיאור=IDH_ByExpression>win2
+5 מכיל מלל=IDH_ContainTheExpression>win2
+2 עזרה
+3 אודות=IDH_About>win2
+3 תוכן עניינים=IDH_Contents>win2
+1 הדפסה
+2 התקנת מדפסת
+3 התקנת מדפסת=IDH_PrintSettings>win2
+2 הצגת דוח לפני הדפסה
+3 סקירת מסמך לפני הדפסה=IDH_PrintPreview>win2
+3 טעינת דוח ישן=IDH_LoadOldReport>win2
+3 שמירת דו"ח נוכחי=IDH_SaveReport>win2
+3 מעבר בין עמודים=IDH_PagesTransport>win2
+3 התאמת תצוגה
+4 תצוגה המותאמת לגודל המסך=IDH_ZoomToPage>win2
+4 תצוגה המותאמת לגודל הדף=IDH_ZoomTo100>win2
+4 תצוגה המאפשרת לראות את כל הדף=IDH_ZoomToFit>win2
+2 הדפסת דוח
+3 הדפסת דו"ח רשימת בנקים=IDH_PrintBanks>win2
+3 הדפסת דו"ח לקוחות עפ"י בנק=IDH_PrintCustomer>win2
+3 הדפסת דו"ח חשבונות עפ"י שם לקוח=IDH_PrintAccounts>win2
+3 הדפסת דו"ח פירטי חשבון עפ"י תאריכים=IDH_PrintDetails>win2
+3 הדפסת דו"ח רשימת חברות=IDH_PrintCompanies>win2
+3 הדפסת דו"ח חשבונות עפ"י שם חברה=IDH_printAccountsByComp>win2
+1 עץ הבנקים
+2 שימוש בעץ הבנקים=IDH_BanksTreeUse>win2
+2 ענף הבנקים=IDH_BanksBranch>win2
+2 ענף הבנק הספציפי=IDH_SpecificBankBranch>win2
+2 ענף הלקוח=IDH_CustomerBranch>win2
+2 ענף פירטי החשבון=IDH_AccountDetails>win2
+1 עץ החברות הוירטואליות
+2 שימוש בעץ החברות הוירטואליות=IDH_CompaniesTreeUse>win2
+2 ענף החברות=IDH_CompanyBranch>win2
+2 ענף החברה הבודדת=IDH_LoneCompanyBranch
+2 ענף פרטי החשבון בעץ החברות=IDH_CompanyAccountDetails>win2
+1 הצגת הנתונים
+2 אזור הצגת הנתונים=IDH_DataErea>win2
+2 הצגת נתוני ענף החברה הבודדת
+3 חשבונות זמינים=IDH_AvailableAccounts>win2
+3 חשבונות מאוגדים=IDH_ConnectedAccounts>win2
+1 יצוא נתונים
+2 סימון הכל כמיוצא/לא מיוצא=IDH_MarkAsExported
+2 סימון שורה בודדת ליצוא=IDH_ExportLoneLine
+2 סימון חשבון שלם על כל תנועותיו=IDH_ExportAccount>win2
+2 סימון מספר חשבונות בו זמנית=IDH_ExportAccounts>win2
+2 סימון/מחיקת קופסאת הביקורת "יצוא"=IDH_ExportCheckBox>win2
+1 הנהלת החשבונות
+2 תוכנות הנהלת החשבונות השונות=IDH_AccountsManagmentPrograms>win2
+2 יצירת תבנית חדשה ליצוא=IDH_CreateNewExportFormat>win2
+1 ?מה זה
+2 שם בנק=IDH_WhatIs_BankName>win2
+2 מספר בנק=IDH_WhatIs_BankNo>win2
+2 שם לקוח=IDH_WhatIs_CustomerName>win2
+2 מספר לקוח=IDH_WhatIs_CustomerNo
+2 זמן יתרה=IDH_WhatIs_BalanceTime>win2
+2 תאריך יתרה=IDH_WhatIs_BalanceDate>win2
+2 יתרה=IDH_WhatIs_Balance>win2
+2 סוג חשבון=IDH_WhatIs_AccountKind>win2
+2 קוד מטבע=IDH_WhatIs_CoinCode>win2
+2 מספר חשבון=IDH_WhatIs_AccountNo>win2
+2 סניף=IDH_WhatIs_BranchNo>win2
+2 שם חברה=IDH_WhatIs_CompanyName>win2
+2 תאריך ערך=IDH_WhatIs_ValueDate>win2
+2 סטטוס=IDH_WhatIs_status>win2
+2 זכות=IDH_WhatIs_Credit>win2
+2 חובה=IDH_WhatIs_Debit>win2
+2 תאור פעולה=IDH_WhatIs_OperationDiscription>win2

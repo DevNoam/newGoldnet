@@ -20,7 +20,9 @@ namespace GoldnetWrapper.Forms
         public Configuration()
         {
             InitializeComponent();
-            repManager = new RepManager();
+            repManager = new RepManager(enabledRepsPanel, disabledRepsPanel);
+
+            repManager.LoadReps();
 
             LoadSettings();
             StartWatchers();
@@ -36,7 +38,6 @@ namespace GoldnetWrapper.Forms
         {
             RegistryHelper.LoadVariables();
             TGMSManager.LoadProperties();
-            DisplayReps();
 
 
             //Write values to the form
@@ -117,27 +118,10 @@ namespace GoldnetWrapper.Forms
                 RegistryHelper.LoadVariables();
                 MessageBox.Show("Saved");
             }
+            repManager.SaveReps();
             this.Close();
         }
 
-        private void DisplayReps()
-        {
-            RepData[] disabledReps = repManager.GetDisabledReps();
-            RepData[] enabledReps = repManager.GetEnabledReps();
-
-            foreach (var rep in disabledReps)
-            {
-                RepSelector repObject = new RepSelector();
-                repObject.InitRep(rep);
-                disabledRepsPanel.Controls.Add(repObject);
-            }
-            foreach (var rep in enabledReps)
-            {
-                RepSelector repObject = new RepSelector();
-                repObject.InitRep(rep);
-                enabledRepsPanel.Controls.Add(repObject);
-            }
-        }
 
         private void StartWatchers()
         {
@@ -145,9 +129,6 @@ namespace GoldnetWrapper.Forms
             {
                 // Start the config file watcher
                 StartConfigWatcher();
-
-                // Start the RepBank folder watcher
-                StartRepBankWatcher();
             });
         }
 
@@ -171,35 +152,6 @@ namespace GoldnetWrapper.Forms
 
             MessageBox.Show("TGMS app.properties not found!");
             return;
-        }
-
-        private void StartRepBankWatcher()
-        {
-            string repBankFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RepBank");
-            if (!Directory.Exists(repBankFolderPath))
-            {
-                Directory.CreateDirectory(repBankFolderPath); // Create the folder if it doesn't exist
-            }
-
-            using (var folderWatcher = new FileSystemWatcher(repBankFolderPath))
-            {
-                folderWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.LastWrite;
-                folderWatcher.IncludeSubdirectories = true;
-
-                // Common handler for all events in RepBank
-                folderWatcher.Changed += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
-                folderWatcher.Created += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
-                folderWatcher.Deleted += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
-                folderWatcher.Renamed += (sender, e) => InvokeSafely(() => ShowFileChangeMessage(e));
-
-                folderWatcher.EnableRaisingEvents = true;
-
-                // Keep this task running while watching for changes
-                while (true)
-                {
-                    Thread.Sleep(100); // Prevent task from exiting
-                }
-            }
         }
 
         /// <summary>
@@ -231,15 +183,6 @@ namespace GoldnetWrapper.Forms
                                              (RegistryVariables.downloadThreadsTGMS > downloadThreadsTGMS.Maximum ? downloadThreadsTGMS.Maximum :
                                              RegistryVariables.downloadThreadsTGMS);
         }
-
-        private void ShowFileChangeMessage(FileSystemEventArgs e)
-        {
-            MessageBox.Show($"File '{e.Name}' in RepBank folder was {e.ChangeType}.");
-            //Reload reps
-            DisplayReps();
-        }
-
-
 
         private void updateSSH_Click(object sender, EventArgs e) => TGMSManager.UpdateSSH();
 
@@ -318,15 +261,8 @@ namespace GoldnetWrapper.Forms
 
         private void openRepImportPath_Click(object sender, EventArgs e)
         {
-            //if folder is missing, create
-            string path = Path.Combine(Application.StartupPath, "RepBank");
-            if (!Directory.Exists(path))
-            {
-                //Create the folder if it doesn't exist
-                Directory.CreateDirectory(path); 
-            }
             //Open the dir 
-            Helpers.RunExternalApp(path);
+            Helpers.RunExternalApp(Application.StartupPath);
         }
     }
 }

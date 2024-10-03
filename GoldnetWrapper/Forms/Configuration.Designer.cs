@@ -218,7 +218,7 @@
             this.כללי.Controls.Add(this.tgmsAppProperties);
             this.כללי.Location = new System.Drawing.Point(4, 22);
             this.כללי.Name = "כללי";
-            this.כללי.Padding = new System.Windows.Forms.Padding(3);
+            this.כללי.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.כללי.Size = new System.Drawing.Size(312, 441);
             this.כללי.TabIndex = 0;
             this.כללי.Text = "כללי";
@@ -334,7 +334,7 @@
             this.ייצואים.Controls.Add(this.checkBalance);
             this.ייצואים.Location = new System.Drawing.Point(4, 22);
             this.ייצואים.Name = "ייצואים";
-            this.ייצואים.Padding = new System.Windows.Forms.Padding(3);
+            this.ייצואים.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.ייצואים.Size = new System.Drawing.Size(312, 441);
             this.ייצואים.TabIndex = 1;
             this.ייצואים.Text = "ייצואים";
@@ -355,7 +355,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(216, 150);
+            this.label9.Location = new System.Drawing.Point(241, 150);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(86, 13);
             this.label9.TabIndex = 46;
@@ -364,17 +364,16 @@
             // disabledRepsPanel
             // 
             this.disabledRepsPanel.AutoScroll = true;
-            this.disabledRepsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.disabledRepsPanel.Location = new System.Drawing.Point(6, 164);
+            this.disabledRepsPanel.Location = new System.Drawing.Point(-3, 164);
             this.disabledRepsPanel.Name = "disabledRepsPanel";
-            this.disabledRepsPanel.Size = new System.Drawing.Size(300, 108);
+            this.disabledRepsPanel.Size = new System.Drawing.Size(309, 108);
             this.disabledRepsPanel.TabIndex = 45;
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(216, 25);
+            this.label4.Location = new System.Drawing.Point(238, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 44;
@@ -383,10 +382,9 @@
             // enabledRepsPanel
             // 
             this.enabledRepsPanel.AutoScroll = true;
-            this.enabledRepsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.enabledRepsPanel.Location = new System.Drawing.Point(6, 39);
+            this.enabledRepsPanel.Location = new System.Drawing.Point(-3, 39);
             this.enabledRepsPanel.Name = "enabledRepsPanel";
-            this.enabledRepsPanel.Size = new System.Drawing.Size(300, 108);
+            this.enabledRepsPanel.Size = new System.Drawing.Size(309, 108);
             this.enabledRepsPanel.TabIndex = 43;
             // 
             // matahFile

@@ -58,5 +58,34 @@ namespace GoldnetWrapper.Core
             }
             return true;
         }
+
+        public static bool IsValidPath(string path)
+        {
+            // Check if the path is not null, empty, or contains invalid characters
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return false;
+            }
+
+            try
+            {
+                // Check if the path contains invalid characters
+                string fullPath = Path.GetFullPath(path);
+
+                // Check if the path has a valid root
+                string root = Path.GetPathRoot(fullPath);
+                if (string.IsNullOrEmpty(root.Trim()))
+                {
+                    return false;
+                }
+
+                return true; // The path is valid
+            }
+            catch (Exception)
+            {
+                // If any exception is thrown (e.g., invalid format), the path is invalid
+                return false;
+            }
+        }
     }
 }

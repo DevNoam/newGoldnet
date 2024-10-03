@@ -2,24 +2,25 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace GoldnetWrapper.Core.UserControls
 {
     public partial class RepSelector : UserControl
     {
-        public bool isEnabled = false;
-        RepData repData;
+        private bool isEnabled = false;
+        private RepData repData;
+        public event EventHandler RepStateChanged;
 
-        public RepSelector()
+        public RepSelector(RepData data)
         {
+            this.repData = data;
             InitializeComponent();
+            InitRep();
         }
 
-        public void InitRep(RepData repData)
+        public void InitRep()
         {
-            this.repData = repData;
-            isEnabled = repData.isEnabled;
+            isEnabled = Convert.ToBoolean(repData.Enabled);
             using (Graphics g = CreateGraphics())
             {
                 SizeF size = g.MeasureString(repData.repName, repName.Font, 495);
@@ -27,12 +28,12 @@ namespace GoldnetWrapper.Core.UserControls
                 repName.Text = repData.repName;
             }
 
+            exportPath.Enabled = true;
+            repSelectPath.Enabled = true;
+            exportPath.Text = $"{repData.OutputFolder}";
             if (isEnabled)
             {
                 enableOrDisableRep.Text = "-";
-                exportPath.Enabled = true;
-                repSelectPath.Enabled = true;
-                exportPath.Text = $"{repData.repExportPath}\\{repData.repExportName}";
             }
             else
             {
@@ -43,42 +44,36 @@ namespace GoldnetWrapper.Core.UserControls
 
         private void repSelectPath_Click(object sender, EventArgs e)
         {
-            //Open file dialog
+            FolderBrowserDialog saveFileDialog = new FolderBrowserDialog();
+            saveFileDialog.Description = "Choose export path";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            { 
+                repData.OutputFolder = saveFileDialog.SelectedPath;
+                exportPath.Text = $"{repData.OutputFolder}";
+            }
         }
 
-        private void repName_Click(object sender, EventArgs e)
-        {
+        private void enableOrDisableRep_Click(object sender, EventArgs e) => HandleEnableDisable();
 
+        public void HandleEnableDisable()
+        {
+            repData.Enabled = repData.Enabled == 1 ? 0 : 1;
+            enableOrDisableRep.Text = repData.Enabled == 1 ? "-" : "+";
+            RepStateChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private void exportPath_TextChanged(object sender, EventArgs e)
+        private void exportPath_Leave(object sender, EventArgs e)
         {
-            //Validate that the path contains a valid file name
-        }
-
-        private void enableOrDisableRep_Click(object sender, EventArgs e)
-        {
-            if(isEnabled)
-            {
-                DisableRep();
+            if (!string.IsNullOrEmpty(exportPath.Text) && !Helpers.IsValidPath(exportPath.Text))
+            { 
+                MessageBox.Show("נתיב לא תקין", "Path invalid", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            {
-                EnableRep();
-            }
+                repData.OutputFolder = exportPath.Text;
         }
-
-        void EnableRep()
+        public RepData GetRepData()
         {
-            //Move rep from RepBank
-            // Add rep to GNEXIMPORT
-            // ADD REP TO REGISTRY
-        }
-        void DisableRep()
-        {
-            //Move rep to RepBank
-            // Delete rep from GNEXIMPORT
-            // DELETE REP FROM REGISTRY
+            return repData;
         }
     }
 }

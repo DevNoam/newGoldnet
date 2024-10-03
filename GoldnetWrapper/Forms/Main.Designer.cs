@@ -33,7 +33,9 @@
             this.קובץToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReFetch_Data = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.לוגמשיכהToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitApp = new System.Windows.Forms.ToolStripMenuItem();
             this.WelcomeHeader = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
@@ -45,8 +47,6 @@
             this.ECurrency = new System.Windows.Forms.PictureBox();
             this.GetSupport = new System.Windows.Forms.Button();
             this.OpenSettingsButton = new System.Windows.Forms.Button();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.לוגמשיכהToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.NewsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,7 +85,7 @@
             // ReFetch_Data
             // 
             this.ReFetch_Data.Name = "ReFetch_Data";
-            this.ReFetch_Data.Size = new System.Drawing.Size(180, 22);
+            this.ReFetch_Data.Size = new System.Drawing.Size(146, 22);
             this.ReFetch_Data.Text = "משיכת נתונים";
             this.ReFetch_Data.Click += new System.EventHandler(this.ReFetch_Data_Click);
             // 
@@ -94,21 +94,33 @@
             this.OpenSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.לוגמשיכהToolStripMenuItem});
             this.OpenSettings.Name = "OpenSettings";
-            this.OpenSettings.Size = new System.Drawing.Size(180, 22);
+            this.OpenSettings.Size = new System.Drawing.Size(146, 22);
             this.OpenSettings.Text = "הגדרות";
             this.OpenSettings.Click += new System.EventHandler(this.OpenSettings_Click);
+            // 
+            // לוגמשיכהToolStripMenuItem
+            // 
+            this.לוגמשיכהToolStripMenuItem.Name = "לוגמשיכהToolStripMenuItem";
+            this.לוגמשיכהToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.לוגמשיכהToolStripMenuItem.Text = "לוג משיכה";
+            this.לוגמשיכהToolStripMenuItem.Click += new System.EventHandler(this.LastFetchLog_Click);
             // 
             // OpenAbout
             // 
             this.OpenAbout.Name = "OpenAbout";
-            this.OpenAbout.Size = new System.Drawing.Size(180, 22);
+            this.OpenAbout.Size = new System.Drawing.Size(146, 22);
             this.OpenAbout.Text = "אודות";
             this.OpenAbout.Click += new System.EventHandler(this.OpenAbout_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // ExitApp
             // 
             this.ExitApp.Name = "ExitApp";
-            this.ExitApp.Size = new System.Drawing.Size(180, 22);
+            this.ExitApp.Size = new System.Drawing.Size(146, 22);
             this.ExitApp.Text = "יציאה";
             this.ExitApp.Click += new System.EventHandler(this.ExitApp_Click);
             // 
@@ -117,22 +129,22 @@
             this.WelcomeHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WelcomeHeader.BackColor = System.Drawing.Color.Transparent;
             this.WelcomeHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WelcomeHeader.Font = new System.Drawing.Font("Arial", 19F);
-            this.WelcomeHeader.Location = new System.Drawing.Point(566, 30);
+            this.WelcomeHeader.Font = new System.Drawing.Font("Arial", 19F, System.Drawing.FontStyle.Bold);
+            this.WelcomeHeader.Location = new System.Drawing.Point(557, 26);
             this.WelcomeHeader.Margin = new System.Windows.Forms.Padding(0);
             this.WelcomeHeader.Name = "WelcomeHeader";
             this.WelcomeHeader.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.WelcomeHeader.Size = new System.Drawing.Size(228, 30);
+            this.WelcomeHeader.Size = new System.Drawing.Size(249, 41);
             this.WelcomeHeader.TabIndex = 1;
             this.WelcomeHeader.Text = "בוקר טוב,";
             // 
             // StatusLabel
             // 
-            this.StatusLabel.Font = new System.Drawing.Font("Arial", 8.25F);
-            this.StatusLabel.Location = new System.Drawing.Point(600, 60);
+            this.StatusLabel.Font = new System.Drawing.Font("Arial", 9F);
+            this.StatusLabel.Location = new System.Drawing.Point(654, 57);
             this.StatusLabel.Margin = new System.Windows.Forms.Padding(0);
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(180, 40);
+            this.StatusLabel.Size = new System.Drawing.Size(152, 42);
             this.StatusLabel.TabIndex = 11;
             // 
             // NewsContainer
@@ -197,13 +209,13 @@
             this.EAccount.BackgroundImage = global::MultiBill.Properties.Resources.matah;
             this.EAccount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.EAccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EAccount.Location = new System.Drawing.Point(167, 103);
+            this.EAccount.Location = new System.Drawing.Point(167, 110);
             this.EAccount.Margin = new System.Windows.Forms.Padding(0, 4, 0, 4);
             this.EAccount.Name = "EAccount";
             this.EAccount.Size = new System.Drawing.Size(213, 278);
             this.EAccount.TabIndex = 3;
             this.EAccount.TabStop = false;
-            this.EAccount.Click += new System.EventHandler(this.EAccount_Click);
+            this.EAccount.Click += new System.EventHandler(this.ECurrency_Click);
             // 
             // ECurrency
             // 
@@ -213,13 +225,13 @@
             this.ECurrency.BackgroundImage = global::MultiBill.Properties.Resources.mivzaq;
             this.ECurrency.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ECurrency.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ECurrency.Location = new System.Drawing.Point(414, 103);
+            this.ECurrency.Location = new System.Drawing.Point(414, 110);
             this.ECurrency.Margin = new System.Windows.Forms.Padding(0, 4, 0, 4);
             this.ECurrency.Name = "ECurrency";
             this.ECurrency.Size = new System.Drawing.Size(213, 278);
             this.ECurrency.TabIndex = 2;
             this.ECurrency.TabStop = false;
-            this.ECurrency.Click += new System.EventHandler(this.ECurrency_Click);
+            this.ECurrency.Click += new System.EventHandler(this.EAccount_Click);
             // 
             // GetSupport
             // 
@@ -246,18 +258,6 @@
             this.OpenSettingsButton.TabIndex = 16;
             this.OpenSettingsButton.UseVisualStyleBackColor = false;
             this.OpenSettingsButton.Click += new System.EventHandler(this.OpenSettingsButton_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // לוגמשיכהToolStripMenuItem
-            // 
-            this.לוגמשיכהToolStripMenuItem.Name = "לוגמשיכהToolStripMenuItem";
-            this.לוגמשיכהToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.לוגמשיכהToolStripMenuItem.Text = "לוג משיכה";
-            this.לוגמשיכהToolStripMenuItem.Click += new System.EventHandler(this.LastFetchLog_Click);
             // 
             // Main
             // 

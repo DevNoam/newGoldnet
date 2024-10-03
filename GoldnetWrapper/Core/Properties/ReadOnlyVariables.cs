@@ -18,5 +18,6 @@ namespace GoldnetWrapper.Core.Properties
         public static string tgms_address = "1.1.1.1";
         public static int tgms_port = 22;
         public static string logName = "fetchLog.txt";
+        public static string repsConfig = "gnexport.ini";
     }
 }
