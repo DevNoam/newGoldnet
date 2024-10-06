@@ -1,6 +1,7 @@
 ﻿using GoldnetWrapper.Core.Properties;
 using System;
 using System.Drawing;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace GoldnetWrapper.Core.UserControls
@@ -21,11 +22,14 @@ namespace GoldnetWrapper.Core.UserControls
         public void InitRep()
         {
             isEnabled = Convert.ToBoolean(repData.Enabled);
-            using (Graphics g = CreateGraphics())
+
+            using (Graphics g = repName.CreateGraphics())
             {
                 SizeF size = g.MeasureString(repData.repName, repName.Font, 495);
                 repName.Height = (int)Math.Ceiling(size.Height);
                 repName.Text = repData.repName;
+                while (repName.Width < TextRenderer.MeasureText(repName.Text, repName.Font).Width)
+                    repName.Font = new Font(repName.Font.FontFamily, repName.Font.Size - 0.5f, repName.Font.Style);
             }
 
             exportPath.Enabled = true;

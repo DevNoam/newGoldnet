@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MultiBill.exe" size="3687424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MultiBill.exe" size="3687936">
       <assemblyIdentity name="MultiBill" version="2024.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UkojmCET2PNRyTIcP6PME9SwUnc99KabtD13yuv14Fk=</dsig:DigestValue>
+        <dsig:DigestValue>B+S/uIaTF4Cm9F0eCIK+lLNYxw+pMoUbPQUqEGHbJfg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ebBZhNMgf4/ahEMqnbCVf57PN7JR4f0C1qKRXBOI6Iw=</dsig:DigestValue>
+        <dsig:DigestValue>giWf2/7BrI62Y8xgwuZHFl7AMWfSLlX7jcd4hKi73Bs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
