@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 public class RepManager : IDisposable
@@ -14,6 +15,8 @@ public class RepManager : IDisposable
     private readonly FlowLayoutPanel disabledContainer;
     private FileSystemWatcher fileWatcher;
     private bool isLoading;
+
+    private Encoding encodingHebrew = Encoding.GetEncoding("Windows-1255");
 
     public RepManager(FlowLayoutPanel enabledContainer, FlowLayoutPanel disabledContainer)
     {
@@ -241,38 +244,51 @@ public class RepManager : IDisposable
     private void SaveRepFile(RepData rep, bool isEnabled)
     {
         var filePath = Path.Combine(Application.StartupPath, $"{rep.repName}.rep");
-        var lines = File.Exists(filePath) ? File.ReadAllLines(filePath).ToList() : new List<string>();
+        var lines = File.ReadAllLines(filePath, encodingHebrew).ToList(); // Reading without encoding for speed
+        var updatedLines = new List<string>();
 
-        var enabledUpdated = false;
-        var outputFileNameUpdated = false;
+        bool changesDetected = false;  // Flag to track if changes are made
 
-        for (int i = 0; i < lines.Count; i++)
+        foreach (var line in lines)
         {
-            if (lines[i].StartsWith("Enabled="))
+            if (line.StartsWith("Enabled="))
             {
-                lines[i] = $"Enabled={(isEnabled ? 1 : 0)}";
-                enabledUpdated = true;
+                var newEnabledLine = $"Enabled={(isEnabled ? 1 : 0)}";
+                updatedLines.Add(newEnabledLine);
+                if (!line.Equals(newEnabledLine)) changesDetected = true; // Mark if there are changes
             }
-            else if (lines[i].StartsWith("OutputFileName="))
+            else if (line.StartsWith("OutputFileName="))
             {
-                var currentOutputFileName = lines[i].Substring("OutputFileName=".Length);
-                lines[i] = $"OutputFileName={Path.Combine(rep.OutputFolder, Path.GetFileName(currentOutputFileName))}";
-                outputFileNameUpdated = true;
+                var currentOutputFileName = line.Substring("OutputFileName=".Length).Trim();
+                var newOutputFileNameLine = $"OutputFileName={Path.Combine(rep.OutputFolder, Path.GetFileName(currentOutputFileName))}";
+                updatedLines.Add(newOutputFileNameLine);
+                if (!line.Equals(newOutputFileNameLine)) changesDetected = true; // Mark if there are changes
             }
-            if (lines[i].StartsWith("Description="))
+            else if (line.StartsWith("Description="))
             {
-                var repDescriptionName = lines[i].Substring("Description=".Length);
+                // Read the Description for registry update but do not modify or overwrite
+                var repDescriptionName = line.Substring("Description=".Length).Trim();
                 if (isEnabled)
-                    RegistryHelper.SetValue($"{repDescriptionName}", (isEnabled ? 1 : 0), "Export");
-                else if (!isEnabled)
-                    RegistryHelper.DeleteValue($"{repDescriptionName}", "Export");
+                {
+                    RegistryHelper.SetValue(repDescriptionName, 1, "Export");
+                }
+                else
+                {
+                    RegistryHelper.DeleteValue(repDescriptionName, "Export");
+                }
+                updatedLines.Add(line); // Retain original Description line
+            }
+            else
+            {
+                updatedLines.Add(line); // Keep all other lines unchanged
             }
         }
 
-        if (!enabledUpdated) lines.Add($"Enabled={(isEnabled ? 1 : 0)}");
-        if (!outputFileNameUpdated) lines.Add($"OutputFileName={Path.Combine(rep.OutputFolder, $"{rep.repName}.dat")}");
-
-        File.WriteAllLines(filePath, lines);
+        // Only write the file with Windows-1255 encoding if changes were detected
+        if (changesDetected)
+        {
+            File.WriteAllLines(filePath, updatedLines, encodingHebrew); // Write using Windows-1255 encoding
+        }
     }
 
     public void Dispose()
