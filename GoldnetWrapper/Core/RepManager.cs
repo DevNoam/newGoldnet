@@ -259,6 +259,14 @@ public class RepManager : IDisposable
                 lines[i] = $"OutputFileName={Path.Combine(rep.OutputFolder, Path.GetFileName(currentOutputFileName))}";
                 outputFileNameUpdated = true;
             }
+            if (lines[i].StartsWith("Description="))
+            {
+                var repDescriptionName = lines[i].Substring("Description=".Length);
+                if (isEnabled)
+                    RegistryHelper.SetValue($"{repDescriptionName}", (isEnabled ? 1 : 0), "Export");
+                else if (!isEnabled)
+                    RegistryHelper.DeleteValue($"{repDescriptionName}", "Export");
+            }
         }
 
         if (!enabledUpdated) lines.Add($"Enabled={(isEnabled ? 1 : 0)}");

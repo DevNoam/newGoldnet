@@ -44,7 +44,6 @@ namespace GoldnetWrapper
 
         private void GetSupport_Click(object sender, EventArgs e)
         {
-            //replace form
             Support support = new Support();
             support.ShowDialog();
         }
@@ -292,5 +291,11 @@ namespace GoldnetWrapper
 
         private void ECurrency_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ECurrency.exe"));
         private void EAccount_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "EAccount.exe"));
+
+        private void MenuStripSupport_Click(object sender, EventArgs e)
+        {
+            Support support = new Support();
+            support.ShowDialog();
+        }
     }
 }

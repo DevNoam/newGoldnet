@@ -175,10 +175,10 @@ namespace GoldnetWrapper.Core
             return true; // Return true to indicate success
         }
 
-        public static void UpdateSSH()
+        public static void OpentgmsFolder()
         {
             string tgmsPath = RegistryVariables.TGMSPath;
-            Helpers.RunExternalApp(Path.Combine(tgmsPath, "UpdateSSH.bat"));
+            Helpers.RunExternalApp(tgmsPath);
         }
         public static void OpenTGMSConfig()
         {

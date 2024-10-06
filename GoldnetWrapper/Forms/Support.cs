@@ -18,17 +18,22 @@ namespace GoldnetWrapper
             Mail.Text = $"📧: {ReadOnlyVariables.supportEmail}";
 
             NewsObject[] news = NewsPuller.PullAllNews();
-            if (news.Length > 0)
+            try
             {
-                newsContainer.Controls.Clear();
-                foreach (var n in news)
+                if (news.Length > 0)
                 {
-                    //newsBlock.Init(n);
-                    NewsBlock newsObject = new NewsBlock();
-                    newsObject.Init(n);
-                    newsContainer.Controls.Add(newsObject);
+                    newsContainer.Controls.Clear();
+                    foreach (var n in news)
+                    {
+                        //newsBlock.Init(n);
+                        NewsBlock newsObject = new NewsBlock();
+                        newsObject.Init(n);
+                        newsContainer.Controls.Add(newsObject);
+                    }
                 }
             }
+            catch (Exception ex)
+            { Console.WriteLine("Failed to load news: " + ex.Message); }
         }
 
         private void SelfAssistPortal_Click(object sender, EventArgs e) => Helpers.OpenURL(ReadOnlyVariables.selfServicePortal);

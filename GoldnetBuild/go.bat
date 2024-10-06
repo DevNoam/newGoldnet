@@ -1,9 +1,15 @@
+REM //////////////////////////////
+REM // BEZEQ INTERNATIONAL 2024
+REM // DO NOT MODIFY THIS CODE CONTENTS
+REM //////////////////////////////
+
+
 @echo off
 setlocal ENABLEEXTENSIONS
 setlocal enabledelayedexpansion
 set dir=%~dp0
 
-REM Variables
+REM Variables  (Can be modified)
 :: ----------------------------
 set EnableECurrency=true
 set EnableEAccount=true
@@ -73,7 +79,7 @@ if exist "!DB_PATH!\Mivzaq\Msgs\*.msq" if /i "!EnableEAccount!"=="true" (
   set /a bkpnumMivzaq+=1
   if /i "!EnableBackup!"=="true" (
       echo LOG: Backingup Mivzaq..  
-     CALL "!dir!\ARJ.exe" a -y "!DB_PATH!\Mivzaq\Bak\!bkpnumMivzaq!.arj" "!DB_PATH!\Mivzaq\Msgs\*.ms*"
+     CALL "!dir!\arj.exe" a -y "!DB_PATH!\Mivzaq\Bak\!bkpnumMivzaq!.arj" "!DB_PATH!\Mivzaq\Msgs\*.ms*"
    )
   echo LOG: Importing Mivzaq..  
   CALL "%dir%\EAccount.exe" -i "%DB_PATH%\Mivzaq\Msgs\*.msq" -E
@@ -88,7 +94,7 @@ if exist "!DB_PATH!\Currency\Msgs\*.msq" if /i "!EnableECurrency!"=="true" (
   set /a bkpnumCurrency+=1
   if /i "!EnableBackup!"=="true" (
    echo LOG: Backingup Matah..    
-   CALL "!dir!\ARJ.exe" a -y "!DB_PATH!\Currency\Bak\!bkpnumCurrency!.arj" "!DB_PATH!\Currency\Msgs\*.ms*"
+   CALL "!dir!\arj.exe" a -y "!DB_PATH!\Currency\Bak\!bkpnumCurrency!.arj" "!DB_PATH!\Currency\Msgs\*.ms*"
   ) 
  echo LOG: Importing Matah..  
  CALL "!dir!\ECurrency.exe" -i "!DB_PATH!\Currency\Msgs\*.msq"

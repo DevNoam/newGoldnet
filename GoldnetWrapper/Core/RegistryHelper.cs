@@ -7,9 +7,9 @@ public class RegistryHelper
 
     // Create or Update a registry key/value
     // Create or Update a registry key/value
-    public static void SetValue(string key, object value)
+    public static void SetValue(string key, object value, string subKey = "Setup")
     {
-        using (var baseKey = Registry.CurrentUser.CreateSubKey(ReadOnlyVariables.registryPath))
+        using (var baseKey = Registry.CurrentUser.CreateSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}"))
         {
             if (baseKey != null)
             {
@@ -19,9 +19,9 @@ public class RegistryHelper
     }
 
     // Read a registry key/value and create a default value if it doesn't exist
-    public static object GetValue(string key)
+    public static object GetValue(string key, string subKey = "Setup")
     {
-        using (var baseKey = Registry.CurrentUser.OpenSubKey(ReadOnlyVariables.registryPath, true)) // Open with write access
+        using (var baseKey = Registry.CurrentUser.OpenSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}", true)) // Open with write access
         {
             if (baseKey != null)
             {
@@ -45,9 +45,9 @@ public class RegistryHelper
     }
 
     // Delete a registry key/value
-    public static void DeleteValue(string key)
+    public static void DeleteValue(string key, string subKey = "Setup")
     {
-        using (var baseKey = Registry.CurrentUser.OpenSubKey(ReadOnlyVariables.registryPath, true))
+        using (var baseKey = Registry.CurrentUser.OpenSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}", true))
         {
             if (baseKey != null)
             {
@@ -57,10 +57,10 @@ public class RegistryHelper
     }
 
     // Get all registry values as a Dictionary
-    public static Dictionary<string, object> GetAllValues()
+    public static Dictionary<string, object> GetAllValues(string subKey = "Setup")
     {
         var values = new Dictionary<string, object>();
-        using (var baseKey = Registry.CurrentUser.OpenSubKey(ReadOnlyVariables.registryPath))
+        using (var baseKey = Registry.CurrentUser.OpenSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}"))
         {
             if (baseKey != null)
             {

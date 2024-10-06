@@ -185,7 +185,7 @@ namespace GoldnetWrapper.Forms
                                              RegistryVariables.downloadThreadsTGMS);
         }
 
-        private void updateSSH_Click(object sender, EventArgs e) => TGMSManager.UpdateSSH();
+        private void OpentgmsFolder(object sender, EventArgs e) => TGMSManager.OpentgmsFolder();
 
         private void dbPathSelect_Click(object sender, EventArgs e)
         {

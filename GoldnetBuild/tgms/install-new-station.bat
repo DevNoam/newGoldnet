@@ -4,21 +4,11 @@ color 0F
 net session >nul 2>&1 
 set "AppPath=%~dp0"
 cd /d "%~dp0"
-set checkIfAppOpen=false
 
-if %errorLevel% == 0 (
-    echo -------------------------------------------------------------------------
-    echo Running as admin, current path: [93m%~dp0[0m
-    echo -------------------------------------------------------------------------
-) else (
-    echo -------------------------------------------------------------------------
-    echo [91mYou are not running as admin, it's recomended to run it as admin!.[0m
-    echo -------------------------------------------------------------------------
-)
 setlocal enabledelayedexpansion
     dir /b "%AppPath%\ssh" | findstr /r "^" >nul
     if errorlevel 1 (
-       echo [91m[1mInstallation aborted: [0m[91mSSH keypair must be located inside the 'ssh' folder. For unmigrated accounts, please proceed with the 'install.bat'."
+       echo [91m[1mInstallation aborted: [0m[91mSSH keypair must be located inside the 'ssh' folder. For new accounts, please procceed with install.bat"
        pause
        exit    
     )

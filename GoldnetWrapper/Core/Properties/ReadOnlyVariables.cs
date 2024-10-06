@@ -13,7 +13,7 @@ namespace GoldnetWrapper.Core.Properties
         public readonly static string selfServicePortal = "https://selfservice.bezeqint.net/web/guest/business-help/applications";
         public readonly static string supportPhone = "1-700-555-222";
         public readonly static string supportEmail = "ITServicesA@bezeqint.co.il";
-        public readonly static string registryPath = @"Software\Goldnet\Setup";
+        public readonly static string registryPath = @"Software\Goldnet\";
         public readonly static string appConfig = "app.properties";
         public static string tgms_address = "1.1.1.1";
         public static int tgms_port = 22;
