@@ -34,7 +34,7 @@
             System.Windows.Forms.Label label6;
             System.Windows.Forms.Label label8;
             System.Windows.Forms.Label label7;
-            System.Windows.Forms.Label label3;
+            this.downloadThreadsLabel = new System.Windows.Forms.Label();
             this.tgmsAppProperties = new System.Windows.Forms.Label();
             this.openExportWizard = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -65,7 +65,6 @@
             label6 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.כללי.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.downloadThreadsTGMS)).BeginInit();
@@ -77,10 +76,10 @@
             label1.AutoSize = true;
             label1.Dock = System.Windows.Forms.DockStyle.Right;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(137, 3);
+            label1.Location = new System.Drawing.Point(179, 3);
             label1.Name = "label1";
             label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            label1.Size = new System.Drawing.Size(172, 29);
+            label1.Size = new System.Drawing.Size(130, 25);
             label1.TabIndex = 0;
             label1.Text = "הגדרות כלליות:";
             // 
@@ -92,7 +91,7 @@
             label2.Location = new System.Drawing.Point(186, 0);
             label2.Name = "label2";
             label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            label2.Size = new System.Drawing.Size(155, 29);
+            label2.Size = new System.Drawing.Size(120, 25);
             label2.TabIndex = 1;
             label2.Text = "הגדרות ייצוא:";
             // 
@@ -104,7 +103,7 @@
             label5.Location = new System.Drawing.Point(208, 71);
             label5.Name = "label5";
             label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            label5.Size = new System.Drawing.Size(118, 20);
+            label5.Size = new System.Drawing.Size(98, 17);
             label5.TabIndex = 4;
             label5.Text = "מזהה תיבת זהב:";
             // 
@@ -116,7 +115,7 @@
             label6.Location = new System.Drawing.Point(230, 28);
             label6.Name = "label6";
             label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            label6.Size = new System.Drawing.Size(89, 20);
+            label6.Size = new System.Drawing.Size(74, 17);
             label6.TabIndex = 5;
             label6.Text = "בסיס נתונים";
             // 
@@ -128,7 +127,7 @@
             label8.Location = new System.Drawing.Point(216, 139);
             label8.Name = "label8";
             label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            label8.Size = new System.Drawing.Size(106, 20);
+            label8.Size = new System.Drawing.Size(88, 17);
             label8.TabIndex = 35;
             label8.Text = "תיקיית TGMS";
             // 
@@ -140,21 +139,21 @@
             label7.Location = new System.Drawing.Point(173, 114);
             label7.Name = "label7";
             label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            label7.Size = new System.Drawing.Size(177, 29);
+            label7.Size = new System.Drawing.Size(133, 25);
             label7.TabIndex = 34;
             label7.Text = "הגדרות תקשורת";
             // 
-            // label3
+            // downloadThreadsLabel
             // 
-            label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label3.Location = new System.Drawing.Point(177, 216);
-            label3.Name = "label3";
-            label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            label3.Size = new System.Drawing.Size(155, 20);
-            label3.TabIndex = 33;
-            label3.Text = "מהירות הורדת נתונים";
+            this.downloadThreadsLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.downloadThreadsLabel.AutoSize = true;
+            this.downloadThreadsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadThreadsLabel.Location = new System.Drawing.Point(177, 216);
+            this.downloadThreadsLabel.Name = "downloadThreadsLabel";
+            this.downloadThreadsLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.downloadThreadsLabel.Size = new System.Drawing.Size(123, 17);
+            this.downloadThreadsLabel.TabIndex = 33;
+            this.downloadThreadsLabel.Text = "מהירות הורדת נתונים";
             // 
             // tgmsAppProperties
             // 
@@ -165,7 +164,7 @@
             this.tgmsAppProperties.Location = new System.Drawing.Point(157, 262);
             this.tgmsAppProperties.Name = "tgmsAppProperties";
             this.tgmsAppProperties.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tgmsAppProperties.Size = new System.Drawing.Size(183, 20);
+            this.tgmsAppProperties.Size = new System.Drawing.Size(147, 17);
             this.tgmsAppProperties.TabIndex = 24;
             this.tgmsAppProperties.Text = "הגדרות TGMS מתקדמות";
             this.tgmsAppProperties.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -180,7 +179,7 @@
             this.openExportWizard.Location = new System.Drawing.Point(3, 421);
             this.openExportWizard.Name = "openExportWizard";
             this.openExportWizard.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.openExportWizard.Size = new System.Drawing.Size(111, 20);
+            this.openExportWizard.Size = new System.Drawing.Size(92, 17);
             this.openExportWizard.TabIndex = 26;
             this.openExportWizard.Text = "Export wizard";
             this.openExportWizard.Click += new System.EventHandler(this.openExportWizard_Click);
@@ -205,7 +204,7 @@
             this.כללי.Controls.Add(this.tgmsPath);
             this.כללי.Controls.Add(label8);
             this.כללי.Controls.Add(label7);
-            this.כללי.Controls.Add(label3);
+            this.כללי.Controls.Add(this.downloadThreadsLabel);
             this.כללי.Controls.Add(this.downloadThreadsTGMS);
             this.כללי.Controls.Add(this.updateSSH);
             this.כללי.Controls.Add(this.EDIBoxID);
@@ -228,9 +227,9 @@
             // 
             this.AutoFetchData.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AutoFetchData.AutoSize = true;
-            this.AutoFetchData.Location = new System.Drawing.Point(145, 242);
+            this.AutoFetchData.Location = new System.Drawing.Point(141, 242);
             this.AutoFetchData.Name = "AutoFetchData";
-            this.AutoFetchData.Size = new System.Drawing.Size(156, 19);
+            this.AutoFetchData.Size = new System.Drawing.Size(160, 17);
             this.AutoFetchData.TabIndex = 48;
             this.AutoFetchData.Text = "משיכת נתונים אוטומאטית";
             this.AutoFetchData.UseVisualStyleBackColor = true;
@@ -256,6 +255,7 @@
             this.tgmsPath.Size = new System.Drawing.Size(178, 20);
             this.tgmsPath.TabIndex = 36;
             this.tgmsPath.Text = "C:\\Goldnet\\TGMS";
+            this.tgmsPath.Leave += new System.EventHandler(this.tgmsPath_Leave);
             // 
             // downloadThreadsTGMS
             // 
@@ -344,9 +344,9 @@
             // 
             this.backupExportFiles.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.backupExportFiles.AutoSize = true;
-            this.backupExportFiles.Location = new System.Drawing.Point(190, 332);
+            this.backupExportFiles.Location = new System.Drawing.Point(185, 332);
             this.backupExportFiles.Name = "backupExportFiles";
-            this.backupExportFiles.Size = new System.Drawing.Size(111, 19);
+            this.backupExportFiles.Size = new System.Drawing.Size(116, 17);
             this.backupExportFiles.TabIndex = 47;
             this.backupExportFiles.Text = "גיבוי קבצי ייצוא";
             this.backupExportFiles.UseVisualStyleBackColor = true;
@@ -357,7 +357,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(241, 150);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 15);
+            this.label9.Size = new System.Drawing.Size(86, 13);
             this.label9.TabIndex = 46;
             this.label9.Text = "ייצואים זמינים";
             // 
@@ -375,7 +375,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(238, 24);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 15);
+            this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 44;
             this.label4.Text = "ייצואים פעילים";
             // 
@@ -413,9 +413,9 @@
             // 
             this.exportMatah.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.exportMatah.AutoSize = true;
-            this.exportMatah.Location = new System.Drawing.Point(163, 358);
+            this.exportMatah.Location = new System.Drawing.Point(158, 358);
             this.exportMatah.Name = "exportMatah";
-            this.exportMatah.Size = new System.Drawing.Size(138, 19);
+            this.exportMatah.Size = new System.Drawing.Size(143, 17);
             this.exportMatah.TabIndex = 21;
             this.exportMatah.Text = "ייצוא קובץ מטח גולמי";
             this.exportMatah.UseVisualStyleBackColor = true;
@@ -436,9 +436,9 @@
             // 
             this.checkBalance.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.checkBalance.AutoSize = true;
-            this.checkBalance.Location = new System.Drawing.Point(154, 309);
+            this.checkBalance.Location = new System.Drawing.Point(149, 309);
             this.checkBalance.Name = "checkBalance";
-            this.checkBalance.Size = new System.Drawing.Size(147, 19);
+            this.checkBalance.Size = new System.Drawing.Size(152, 17);
             this.checkBalance.TabIndex = 19;
             this.checkBalance.Text = "בדיקת יתרות לפני ייצוא";
             this.checkBalance.UseVisualStyleBackColor = true;
@@ -503,5 +503,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox backupExportFiles;
         private System.Windows.Forms.CheckBox AutoFetchData;
+        private System.Windows.Forms.Label downloadThreadsLabel;
     }
 }

@@ -1,51 +1,55 @@
 ﻿using GoldnetWrapper.Core.Properties;
 using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 
 public class RegistryHelper
 {
+    private const string DefaultSubKey = "Setup";
 
-    // Create or Update a registry key/value
-    // Create or Update a registry key/value
-    public static void SetValue(string key, object value, string subKey = "Setup")
+    public static void SetValue(string key, object value, string subKey = DefaultSubKey)
     {
         using (var baseKey = Registry.CurrentUser.CreateSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}"))
         {
             if (baseKey != null)
             {
-                baseKey.SetValue(key, value);
+                // Automatically handle DWORD for 0 or 1
+                if (value is int intValue && (intValue == 0 || intValue == 1))
+                {
+                    baseKey.SetValue(key, intValue, RegistryValueKind.DWord);
+                }
+                else
+                {
+                    baseKey.SetValue(key, value);
+                }
             }
         }
     }
 
-    // Read a registry key/value and create a default value if it doesn't exist
-    public static object GetValue(string key, string subKey = "Setup")
+    public static object GetValue(string key, string subKey = DefaultSubKey)
     {
         using (var baseKey = Registry.CurrentUser.OpenSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}", true)) // Open with write access
         {
-            if (baseKey != null)
-            {
-                var value = baseKey.GetValue(key);
+            if (baseKey == null) return null;
 
-                // If the value is null, create a default value
-                if (value == null)
-                {
-                    // Assuming default values:
-                    // - string: empty
-                    // - int: 0
-                    // - bool: false
-                    object defaultValue = string.Empty; // Default for string type
-                    baseKey.SetValue(key, defaultValue); // Set default value in the registry
-                    return defaultValue; // Return the default value
-                }
-                return value; // Return the existing value
+            var value = baseKey.GetValue(key);
+            if (value == null)
+            {
+                SetValue(key, string.Empty, subKey); // Use SetValue to create a default entry
+                return null;
             }
+
+            // Automatically convert DWORD (0 or 1) to boolean
+            if (value is int intValue)
+            {
+                return intValue == 1; // return true or false
+            }
+
+            return value; // Return original value for non-integer types
         }
-        return null; // Return null if the key does not exist
     }
 
-    // Delete a registry key/value
-    public static void DeleteValue(string key, string subKey = "Setup")
+    public static void DeleteValue(string key, string subKey = DefaultSubKey)
     {
         using (var baseKey = Registry.CurrentUser.OpenSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}", true))
         {
@@ -56,8 +60,7 @@ public class RegistryHelper
         }
     }
 
-    // Get all registry values as a Dictionary
-    public static Dictionary<string, object> GetAllValues(string subKey = "Setup")
+    public static Dictionary<string, object> GetAllValues(string subKey = DefaultSubKey)
     {
         var values = new Dictionary<string, object>();
         using (var baseKey = Registry.CurrentUser.OpenSubKey($"{ReadOnlyVariables.registryPath}\\{subKey}"))
@@ -73,12 +76,11 @@ public class RegistryHelper
         return values;
     }
 
-    // Read from a Dictionary and write to registry
-    public static void WriteFromDictionary(Dictionary<string, object> values)
+    public static void WriteFromDictionary(Dictionary<string, object> values, string subKey = DefaultSubKey)
     {
         foreach (var kvp in values)
         {
-            SetValue(kvp.Key, kvp.Value);
+            SetValue(kvp.Key, kvp.Value, subKey);
         }
     }
 
@@ -89,11 +91,11 @@ public class RegistryHelper
     {
         RegistryVariables.DatabaseDir = RegistryHelper.GetValue("DatabaseDir").ToString();
         RegistryVariables.TGMSPath = RegistryHelper.GetValue("TGMSPath").ToString();
-        //Read 1 or 0 from registry and convert to bool
-        RegistryVariables.CheckBalance = RegistryHelper.GetValue("CheckBalance").ToString() == "1" ? true : false;
-        RegistryVariables.BackupExport = RegistryHelper.GetValue("BackupExport").ToString() == "1" ? true : false;
-        RegistryVariables.RawExportECurency = RegistryHelper.GetValue("RawExportECurency").ToString() == "1" ? true : false;
         RegistryVariables.RawCurrencyDir = RegistryHelper.GetValue("RawCurrencyDir").ToString();
-        RegistryVariables.AutoFetchData = RegistryHelper.GetValue("AutoFetchData").ToString() == "1" ? true : false;
+        //Read 1 or 0 from registry and convert to bool
+        RegistryVariables.CheckBalance = Convert.ToInt32(RegistryHelper.GetValue("CheckBalance")) == 1 ? true : false;
+        RegistryVariables.BackupExport = Convert.ToInt32(RegistryHelper.GetValue("BackupExport")) == 1 ? true : false;
+        RegistryVariables.RawExportECurency = Convert.ToInt32(RegistryHelper.GetValue("RawExportECurency")) == 1 ? true : false;
+        RegistryVariables.AutoFetchData = Convert.ToInt32(RegistryHelper.GetValue("AutoFetchData")) == 1 ? true : false;
     }
 }

@@ -34,6 +34,7 @@
             this.ReFetch_Data = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.לוגמשיכהToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuStripSupport = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitApp = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@
             this.ECurrency = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.OpenSettingsButton = new System.Windows.Forms.Label();
-            this.MenuStripSupport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.NewsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -64,7 +64,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 1, 0, 1);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStrip1.Size = new System.Drawing.Size(806, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(806, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -78,13 +78,13 @@
             this.toolStripSeparator2,
             this.ExitApp});
             this.קובץToolStripMenuItem.Name = "קובץToolStripMenuItem";
-            this.קובץToolStripMenuItem.Size = new System.Drawing.Size(68, 28);
+            this.קובץToolStripMenuItem.Size = new System.Drawing.Size(56, 22);
             this.קובץToolStripMenuItem.Text = "פעולות";
             // 
             // ReFetch_Data
             // 
             this.ReFetch_Data.Name = "ReFetch_Data";
-            this.ReFetch_Data.Size = new System.Drawing.Size(224, 26);
+            this.ReFetch_Data.Size = new System.Drawing.Size(146, 22);
             this.ReFetch_Data.Text = "משיכת נתונים";
             this.ReFetch_Data.Click += new System.EventHandler(this.ReFetch_Data_Click);
             // 
@@ -94,33 +94,40 @@
             this.לוגמשיכהToolStripMenuItem,
             this.MenuStripSupport});
             this.OpenSettings.Name = "OpenSettings";
-            this.OpenSettings.Size = new System.Drawing.Size(224, 26);
+            this.OpenSettings.Size = new System.Drawing.Size(146, 22);
             this.OpenSettings.Text = "הגדרות";
             this.OpenSettings.Click += new System.EventHandler(this.OpenSettings_Click);
             // 
             // לוגמשיכהToolStripMenuItem
             // 
             this.לוגמשיכהToolStripMenuItem.Name = "לוגמשיכהToolStripMenuItem";
-            this.לוגמשיכהToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.לוגמשיכהToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.לוגמשיכהToolStripMenuItem.Text = "לוג משיכה";
             this.לוגמשיכהToolStripMenuItem.Click += new System.EventHandler(this.LastFetchLog_Click);
+            // 
+            // MenuStripSupport
+            // 
+            this.MenuStripSupport.Name = "MenuStripSupport";
+            this.MenuStripSupport.Size = new System.Drawing.Size(127, 22);
+            this.MenuStripSupport.Text = "תמיכה";
+            this.MenuStripSupport.Click += new System.EventHandler(this.MenuStripSupport_Click);
             // 
             // OpenAbout
             // 
             this.OpenAbout.Name = "OpenAbout";
-            this.OpenAbout.Size = new System.Drawing.Size(224, 26);
+            this.OpenAbout.Size = new System.Drawing.Size(146, 22);
             this.OpenAbout.Text = "אודות";
             this.OpenAbout.Click += new System.EventHandler(this.OpenAbout_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // ExitApp
             // 
             this.ExitApp.Name = "ExitApp";
-            this.ExitApp.Size = new System.Drawing.Size(224, 26);
+            this.ExitApp.Size = new System.Drawing.Size(146, 22);
             this.ExitApp.Text = "יציאה";
             this.ExitApp.Click += new System.EventHandler(this.ExitApp_Click);
             // 
@@ -229,7 +236,7 @@
             this.label1.Location = new System.Drawing.Point(6, 436);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(106, 39);
+            this.label1.Size = new System.Drawing.Size(85, 31);
             this.label1.TabIndex = 17;
             this.label1.Text = "תמיכה";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -243,18 +250,11 @@
             this.OpenSettingsButton.Location = new System.Drawing.Point(713, 436);
             this.OpenSettingsButton.Name = "OpenSettingsButton";
             this.OpenSettingsButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.OpenSettingsButton.Size = new System.Drawing.Size(117, 39);
+            this.OpenSettingsButton.Size = new System.Drawing.Size(94, 31);
             this.OpenSettingsButton.TabIndex = 18;
             this.OpenSettingsButton.Text = "הגדרות";
             this.OpenSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OpenSettingsButton.Click += new System.EventHandler(this.OpenSettingsButton_Click);
-            // 
-            // MenuStripSupport
-            // 
-            this.MenuStripSupport.Name = "MenuStripSupport";
-            this.MenuStripSupport.Size = new System.Drawing.Size(224, 26);
-            this.MenuStripSupport.Text = "תמיכה";
-            this.MenuStripSupport.Click += new System.EventHandler(this.MenuStripSupport_Click);
             // 
             // Main
             // 
@@ -280,6 +280,7 @@
             this.Name = "Main";
             this.Tag = "Status: Idle..";
             this.Text = "MultiBill Services";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

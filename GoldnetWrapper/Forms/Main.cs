@@ -12,11 +12,13 @@ namespace GoldnetWrapper
     public partial class Main : Form
     {
         public static Label StatusLabelVar;
+        bool isFetching = false;
         public Main()
         {
             InitializeComponent();
             StatusLabelVar = this.StatusLabel;
         }
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             DisplayWelcomeHeader();
@@ -81,7 +83,7 @@ namespace GoldnetWrapper
             //Disable buttons
             string logFilePath = Path.Combine(Application.StartupPath, ReadOnlyVariables.logName);
             LogMessage($"Log started: {DateTime.Now}", false);
-            
+
 
             ChangeButtonsState(false);
             // Step 1: Start the batch file process
@@ -92,7 +94,12 @@ namespace GoldnetWrapper
             batchProcess.StartInfo.UseShellExecute = false;
             batchProcess.StartInfo.RedirectStandardOutput = true;
             batchProcess.StartInfo.RedirectStandardError = true;
-
+            batchProcess.EnableRaisingEvents = true;
+            batchProcess.Exited += (sender, e) =>
+            {
+                // Ensure we update the UI on the main thread
+                this.Invoke(new Action(() => ChangeButtonsState(true)));
+            };
 
             bool isFetchingEnded = false;
             bool displayTGMSLogs = false;
@@ -131,7 +138,7 @@ namespace GoldnetWrapper
                         if (e.Data.Contains("Failed to create session!"))
                         {
                             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                            { 
+                            {
                                 MessageBox.Show("אין חיבור לרשת.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else if (!CheckInternetConnection(ReadOnlyVariables.tgms_address, ReadOnlyVariables.tgms_port))  // Replace with your target IP and port
@@ -140,10 +147,11 @@ namespace GoldnetWrapper
                                 return;
                             }
                             else
-                            { 
+                            {
                                 MessageBox.Show("אין אפשרות להתחבר עם משתמש זה, יש ליצור קשר.", "תקלת תקשורת", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             //OPEN SUPPORT PAGE
+                            batchProcess.Kill();
                         }
                         StatusLabel.Invoke((MethodInvoker)(() =>
                             StatusLabel.Text = $"Status: {e.Data}"
@@ -172,6 +180,7 @@ namespace GoldnetWrapper
                         LogMessage($"Log ended: {DateTime.Now}", true);
                         isFetchingEnded = true;
                         timeoutTimer.Stop();
+                        batchProcess.Kill();
                     }
                 }
             };
@@ -197,20 +206,9 @@ namespace GoldnetWrapper
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to run go.bat: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                batchProcess.Kill();
             }
 
-            //ENABLE BUTTONS;
-            ChangeButtonsState(true);
-
-
-            void ChangeButtonsState(bool enabled)
-            {
-                ReFetch_Data.Enabled = enabled;
-                EAccount.Enabled = enabled;
-                ECurrency.Enabled = enabled;
-                OpenSettingsButton.Enabled = enabled;
-                OpenSettings.Enabled = enabled;
-            }
             void LogMessage(string message, bool cleanLog = true)
             {
                 try
@@ -228,6 +226,16 @@ namespace GoldnetWrapper
                 }
             }
         }
+        void ChangeButtonsState(bool enabled)
+        {
+            ReFetch_Data.Enabled = enabled;
+            EAccount.Enabled = enabled;
+            ECurrency.Enabled = enabled;
+            OpenSettingsButton.Enabled = enabled;
+            OpenSettings.Enabled = enabled;
+            isFetching = !enabled;
+        }
+
         private static bool CheckInternetConnection(string host, int port)
         {
             try
@@ -264,11 +272,6 @@ namespace GoldnetWrapper
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void OpenAbout_Click(object sender, EventArgs e)
         {
             About about = new About();
@@ -296,6 +299,15 @@ namespace GoldnetWrapper
         {
             Support support = new Support();
             support.ShowDialog();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isFetching)
+            {
+                e.Cancel = true;
+                return;
+            }
         }
     }
 }

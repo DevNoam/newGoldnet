@@ -23,9 +23,11 @@ namespace GoldnetWrapper.Core
 
         public static bool ValidateTGMSPath()
         {
-            if (!File.Exists(Path.Combine(RegistryVariables.TGMSPath, ReadOnlyVariables.appConfig)) || !Directory.Exists(RegistryVariables.TGMSPath))
+            if(string.IsNullOrWhiteSpace(RegistryVariables.TGMSPath))
+                return false;
+            else if (!File.Exists(Path.Combine(RegistryVariables.TGMSPath, ReadOnlyVariables.appConfig)) || !Directory.Exists(RegistryVariables.TGMSPath))
             {
-                MessageBox.Show("TGMS file not found. Validate TGMS Path.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please configure TGMS", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }else
             {

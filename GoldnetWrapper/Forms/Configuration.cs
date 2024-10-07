@@ -55,6 +55,7 @@ namespace GoldnetWrapper.Forms
                                          (RegistryVariables.downloadThreadsTGMS > downloadThreadsTGMS.Maximum ? downloadThreadsTGMS.Maximum :
                                          RegistryVariables.downloadThreadsTGMS);
             enableMatahPath();
+            CheckTGMSEnabled();
         }
 
         private void SaveSettings()
@@ -90,17 +91,17 @@ namespace GoldnetWrapper.Forms
             }
             if (CheckBalance != RegistryVariables.CheckBalance)
             { 
-                RegistryHelper.SetValue("CheckBalance", (bool)CheckBalance ? "1" : "0");
+                RegistryHelper.SetValue("CheckBalance", (bool)CheckBalance ? 1 : 0);
                 changesMade++;
             }
             if (BackupExport != RegistryVariables.BackupExport)
             { 
-                RegistryHelper.SetValue("BackupExport", (bool)BackupExport ? "1" : "0");
+                RegistryHelper.SetValue("BackupExport", (bool)BackupExport ? 1 : 0);
                 changesMade++;
             }
             if (RawExportECurency != RegistryVariables.RawExportECurency)
             { 
-                RegistryHelper.SetValue("RawExportECurency", (bool)RawExportECurency ? "1" : "0");
+                RegistryHelper.SetValue("RawExportECurency", (bool)RawExportECurency ? 1 : 0);
                 changesMade++;
             }
             if (RawCurrencyDir != RegistryVariables.RawCurrencyDir)
@@ -110,7 +111,7 @@ namespace GoldnetWrapper.Forms
             }
             if (AutoFetchData != RegistryVariables.AutoFetchData)
             { 
-                RegistryHelper.SetValue("AutoFetchData", (bool)AutoFetchData ? "1" : "0");
+                RegistryHelper.SetValue("AutoFetchData", (bool)AutoFetchData ? 1 : 0);
                 changesMade++;
             }
 
@@ -126,6 +127,8 @@ namespace GoldnetWrapper.Forms
 
         private void StartWatchers()
         {
+            if (string.IsNullOrWhiteSpace(tgmsPath.Text))
+                return;
             Task.Run(() =>
             {
                 // Start the config file watcher
@@ -201,9 +204,25 @@ namespace GoldnetWrapper.Forms
                 dialog.Dispose();
             }
 
-            //If path has no childs, ask user if he wants to create a new db
+            if (!Directory.EnumerateFileSystemEntries(dbPath.Text).Any())
+                MessageBox.Show("תיקייה זו ריקה.", "התראה", MessageBoxButtons.OK);
+        }
 
-
+        private void CheckTGMSEnabled()
+        {
+            if (string.IsNullOrWhiteSpace(tgmsPath.Text))
+            { 
+                updateSSH.Enabled = false;
+                downloadThreadsTGMS.Enabled = false;
+                tgmsAppProperties.Enabled = false;
+                downloadThreadsLabel.Enabled = false;
+            }else
+            {
+                updateSSH.Enabled = true;
+                downloadThreadsTGMS.Enabled = true;
+                tgmsAppProperties.Enabled = true;
+                downloadThreadsLabel.Enabled = true;
+            }
         }
 
         private void tgmsPathSelect_Click(object sender, EventArgs e)
@@ -265,5 +284,7 @@ namespace GoldnetWrapper.Forms
             //Open the dir 
             Helpers.RunExternalApp(Application.StartupPath);
         }
+
+        private void tgmsPath_Leave(object sender, EventArgs e) => CheckTGMSEnabled();
     }
 }
