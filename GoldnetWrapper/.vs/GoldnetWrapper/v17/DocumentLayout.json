@@ -3,31 +3,39 @@
   "WorkspaceRootPath": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\forms\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:forms\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\forms\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\forms\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:forms\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\core\\tgmsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\core\\properties\\readonlyvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:core\\properties\\readonlyvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\core\\tgmsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:core\\tgmsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\forms\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:forms\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\core\\registryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\core\\registryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:core\\registryhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:forms\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|c:\\users\\noam1\\desktop\\newgoldnet\\goldnetwrapper\\forms\\about.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\forms\\about.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{44EF2307-E74F-412B-B923-807E1839EEBF}|GoldnetWrapper.csproj|solutionrelative:forms\\about.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -38,11 +46,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{25f7e850-ffa1-11d0-b63f-00a0c922e851}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAADYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T19:52:57.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReadOnlyVariables.cs",
+              "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Core\\Properties\\ReadOnlyVariables.cs",
+              "RelativeDocumentMoniker": "Core\\Properties\\ReadOnlyVariables.cs",
+              "ToolTip": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Core\\Properties\\ReadOnlyVariables.cs",
+              "RelativeToolTip": "Core\\Properties\\ReadOnlyVariables.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T19:31:41.765Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -52,14 +85,13 @@
               "RelativeDocumentMoniker": "Core\\TGMSManager.cs",
               "ToolTip": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Core\\TGMSManager.cs",
               "RelativeToolTip": "Core\\TGMSManager.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAIAwwBgAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T18:45:23.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-07T18:45:23.714Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Configuration.cs [Design]",
               "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Forms\\Configuration.cs",
               "RelativeDocumentMoniker": "Forms\\Configuration.cs",
@@ -71,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "About.resx",
               "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Forms\\About.resx",
               "RelativeDocumentMoniker": "Forms\\About.resx",
@@ -79,12 +111,11 @@
               "RelativeToolTip": "Forms\\About.resx",
               "ViewState": "AQIAAFEAAAAAAAAAAAA2wGIAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2024-10-07T17:57:31.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-07T17:57:31.35Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "RegistryHelper.cs",
               "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Core\\RegistryHelper.cs",
               "RelativeDocumentMoniker": "Core\\RegistryHelper.cs",
@@ -92,25 +123,24 @@
               "RelativeToolTip": "Core\\RegistryHelper.cs",
               "ViewState": "AQIAAE8AAAAAAAAAAADgv1gAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T17:53:58.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-07T17:53:58.317Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Configuration.cs",
               "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Forms\\Configuration.cs",
               "RelativeDocumentMoniker": "Forms\\Configuration.cs",
               "ToolTip": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Forms\\Configuration.cs",
               "RelativeToolTip": "Forms\\Configuration.cs",
-              "ViewState": "AQIAALcAAAAAAAAAAADgv8kAAAANAAAA",
+              "ViewState": "AQIAALQAAAAAAAAAAADgv8kAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T17:53:06.708Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Main.cs",
               "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Forms\\Main.cs",
               "RelativeDocumentMoniker": "Forms\\Main.cs",
@@ -118,20 +148,18 @@
               "RelativeToolTip": "Forms\\Main.cs",
               "ViewState": "AQIAAKMAAAAAAAAAAIAywLYAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T17:39:21.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-07T17:39:21.959Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Main.cs [Design]",
               "DocumentMoniker": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Forms\\Main.cs",
               "RelativeDocumentMoniker": "Forms\\Main.cs",
               "ToolTip": "C:\\Users\\noam1\\Desktop\\newGoldnet\\GoldnetWrapper\\Forms\\Main.cs [Design]",
               "RelativeToolTip": "Forms\\Main.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T17:39:18.276Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-10-07T17:39:18.276Z"
             }
           ]
         }

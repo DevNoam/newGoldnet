@@ -1,6 +1,7 @@
 ﻿using GoldnetWrapper.Core;
 using GoldnetWrapper.Core.Properties;
 using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;

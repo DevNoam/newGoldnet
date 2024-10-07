@@ -7,7 +7,7 @@ RecNo
 RecCount
 
 [General]
-Enabled=1
+Enabled=0
 OutputFileName=c:\goldnet\raw.dat
 OpenType=overwrite
 ;FileName=C:\hashav\{MyIndex}.dat

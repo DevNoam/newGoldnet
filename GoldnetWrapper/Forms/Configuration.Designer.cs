@@ -124,7 +124,7 @@
             label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             label8.AutoSize = true;
             label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label8.Location = new System.Drawing.Point(216, 139);
+            label8.Location = new System.Drawing.Point(216, 175);
             label8.Name = "label8";
             label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             label8.Size = new System.Drawing.Size(88, 17);
@@ -136,7 +136,7 @@
             label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label7.Location = new System.Drawing.Point(173, 114);
+            label7.Location = new System.Drawing.Point(173, 149);
             label7.Name = "label7";
             label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             label7.Size = new System.Drawing.Size(133, 25);
@@ -148,7 +148,7 @@
             this.downloadThreadsLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.downloadThreadsLabel.AutoSize = true;
             this.downloadThreadsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.downloadThreadsLabel.Location = new System.Drawing.Point(177, 216);
+            this.downloadThreadsLabel.Location = new System.Drawing.Point(177, 253);
             this.downloadThreadsLabel.Name = "downloadThreadsLabel";
             this.downloadThreadsLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.downloadThreadsLabel.Size = new System.Drawing.Size(123, 17);
@@ -161,7 +161,7 @@
             this.tgmsAppProperties.AutoSize = true;
             this.tgmsAppProperties.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tgmsAppProperties.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tgmsAppProperties.Location = new System.Drawing.Point(157, 262);
+            this.tgmsAppProperties.Location = new System.Drawing.Point(157, 275);
             this.tgmsAppProperties.Name = "tgmsAppProperties";
             this.tgmsAppProperties.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tgmsAppProperties.Size = new System.Drawing.Size(147, 17);
@@ -227,7 +227,7 @@
             // 
             this.AutoFetchData.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AutoFetchData.AutoSize = true;
-            this.AutoFetchData.Location = new System.Drawing.Point(141, 242);
+            this.AutoFetchData.Location = new System.Drawing.Point(141, 121);
             this.AutoFetchData.Name = "AutoFetchData";
             this.AutoFetchData.Size = new System.Drawing.Size(160, 17);
             this.AutoFetchData.TabIndex = 48;
@@ -238,7 +238,7 @@
             // 
             this.tgmsPathSelect.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tgmsPathSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tgmsPathSelect.Location = new System.Drawing.Point(281, 159);
+            this.tgmsPathSelect.Location = new System.Drawing.Point(281, 197);
             this.tgmsPathSelect.Name = "tgmsPathSelect";
             this.tgmsPathSelect.Size = new System.Drawing.Size(23, 20);
             this.tgmsPathSelect.TabIndex = 37;
@@ -249,7 +249,7 @@
             // tgmsPath
             // 
             this.tgmsPath.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.tgmsPath.Location = new System.Drawing.Point(100, 159);
+            this.tgmsPath.Location = new System.Drawing.Point(100, 196);
             this.tgmsPath.Name = "tgmsPath";
             this.tgmsPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tgmsPath.Size = new System.Drawing.Size(178, 20);
@@ -260,7 +260,7 @@
             // downloadThreadsTGMS
             // 
             this.downloadThreadsTGMS.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.downloadThreadsTGMS.Location = new System.Drawing.Point(118, 216);
+            this.downloadThreadsTGMS.Location = new System.Drawing.Point(118, 253);
             this.downloadThreadsTGMS.Minimum = new decimal(new int[] {
             1,
             0,
@@ -279,7 +279,7 @@
             // 
             this.updateSSH.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.updateSSH.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateSSH.Location = new System.Drawing.Point(124, 185);
+            this.updateSSH.Location = new System.Drawing.Point(124, 220);
             this.updateSSH.Name = "updateSSH";
             this.updateSSH.Size = new System.Drawing.Size(180, 28);
             this.updateSSH.TabIndex = 31;
