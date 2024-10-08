@@ -130,44 +130,48 @@ namespace GoldnetWrapper
                     timeoutTimer.Stop();
                     timeoutTimer.Start();
 
-                    LogMessage(e.Data, true);
 
-                    // Toggle display of TGMS logs
-                    if (displayTGMSLogs)
+                    if (e.Data.Contains("TGMS"))
                     {
-                        if (e.Data.Contains("Failed to create session!"))
-                        {
-                            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                            {
-                                MessageBox.Show("אין חיבור לרשת.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            else if (!CheckInternetConnection(ReadOnlyVariables.tgms_address, ReadOnlyVariables.tgms_port))  // Replace with your target IP and port
-                            {
-                                MessageBox.Show("אין גישה לשרת.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-                            else
-                            {
-                                MessageBox.Show("אין אפשרות להתחבר עם משתמש זה, יש ליצור קשר.", "תקלת תקשורת", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            //OPEN SUPPORT PAGE
-                            batchProcess.Kill();
+                        if (e.Data.Contains("STARTTGMS"))
+                        { 
+                            displayTGMSLogs = true;
+                            return;
                         }
+                        if (e.Data.Contains("ENDTGMS"))
+                        { 
+                            displayTGMSLogs = false;
+                            return;
+                        }
+                    }
+                    // Toggle display of TGMS logs
+                    if (e.Data.Contains("Failed to create session!") && displayTGMSLogs)
+                    {
+                        isFetchingEnded = true;
+                        timeoutTimer.Stop();
+                        batchProcess.Kill();
+                        StatusLabel.Invoke((MethodInvoker)(() =>
+                            StatusLabel.Text = $"Status: Communication error, contact support."
+                        ));
+                        if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        {
+                            MessageBox.Show("אין חיבור לרשת.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("אין אפשרות להתחבר לשרת, יש ליצור קשר.", "תקלת תקשורת", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else if (!isFetchingEnded && displayTGMSLogs)
+                    { 
                         StatusLabel.Invoke((MethodInvoker)(() =>
                             StatusLabel.Text = $"Status: {e.Data}"
                         ));
                     }
 
-                    if (e.Data.Contains("TGMS"))
-                    {
-                        if (e.Data == "STARTTGMS")
-                            displayTGMSLogs = true;
-                        if (e.Data == "ENDTGMS")
-                            displayTGMSLogs = false;
-                    }
 
                     // Display logs matching "LOG:"
-                    if (e.Data.Contains("LOG:"))
+                    if (!isFetchingEnded && e.Data.Contains("LOG:"))
                     {
                         StatusLabel.Invoke((MethodInvoker)(() =>
                             StatusLabel.Text = $"Status: {e.Data.Remove(0, 4).Trim()}"
@@ -175,13 +179,14 @@ namespace GoldnetWrapper
                     }
 
                     // Step 4: Check if the operation has ended
-                    if (e.Data.Contains("Fetching ended"))
+                    if (!isFetchingEnded && e.Data.Contains("Fetching ended"))
                     {
                         LogMessage($"Log ended: {DateTime.Now}", true);
                         isFetchingEnded = true;
                         timeoutTimer.Stop();
                         batchProcess.Kill();
                     }
+                    LogMessage(e.Data, true);
                 }
             };
 

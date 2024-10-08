@@ -50,10 +50,10 @@ if %errorlevel% equ 0 (
 )
 
 REM Download new data from Server
-if not "!TGMSRunBat!"=="NULL" if exist "!TGMSRunBat!" (
+if not "!TGMSPath!"=="NULL" if exist "!TGMSPath!" (
    echo [36mCalling TGMS..[0m
    echo STARTTGMS 
-   CALL "!TGMSRunBat!\run.bat"
+   CALL "!TGMSPath!\run.bat"
    echo ENDTGMS 
    echo [36mTGMS finished.[0m
 )

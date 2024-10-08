@@ -24,16 +24,9 @@ reg add "HKEY_CURRENT_USER\Software\GoldNET\Setup" /f /v TGMSPath /t REG_SZ /d "
 
 
 echo Installing fonts...[0m
-set "fontPath=%AppPath%\Fonts"
 color 0F
 for %%f in ("%AppPath%\InstallDependancies\Fonts\*.fon") do (
-    echo Copying %%~nxf to %fontPath%...
-    copy /Y "%%f" "%fontPath%" >nul 2>&1
-    if %errorlevel% neq 0 (
-        echo Failed to install %%~nxf. Access denied.
-    ) else (
-        echo Installed %%~nxf successfully.
-    )
+    reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Fonts" /v "%%~nf (TrueType)" /t REG_SZ /d "%%f" /f >nul
 )
 
 REM RESERVED, ADD PROGRAM SHORTCUTS TO WINDOWS

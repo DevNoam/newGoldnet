@@ -75,10 +75,9 @@ namespace GoldnetWrapper.Forms
                 RegistryHelper.SetValue("TGMSPath", TGMSPath);
                 changesMade++;
             }
-            if (dbPath.Text != RegistryVariables.DatabaseDir)
-            {
+            if (TGMSManager.SetEDIReceiveLocation(DatabaseDir))
+            { 
                 RegistryHelper.SetValue("DatabaseDir", DatabaseDir);
-                TGMSManager.SetEDIReceiveLocation(DatabaseDir);
                 changesMade++;
             }
             if (DownloadThreads != RegistryVariables.downloadThreadsTGMS)

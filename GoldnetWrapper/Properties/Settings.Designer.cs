@@ -22,5 +22,14 @@ namespace MultiBill.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Bronze")]
+        public string ReleaseBranch {
+            get {
+                return ((string)(this["ReleaseBranch"]));
+            }
+        }
     }
 }

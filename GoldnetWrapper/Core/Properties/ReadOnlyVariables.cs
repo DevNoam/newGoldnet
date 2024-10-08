@@ -12,7 +12,7 @@ namespace GoldnetWrapper.Core.Properties
         public readonly static string supportEmail = "ITServicesA@bezeqint.co.il";
         public readonly static string registryPath = @"Software\Goldnet\";
         public readonly static string appConfig = "app.properties";
-        public static string tgms_address = "1.1.1.1";
+        public static string tgms_address = "192.115.8.24";
         public static int tgms_port = 22;
         public static string logName = "fetchLog.txt";
     }
