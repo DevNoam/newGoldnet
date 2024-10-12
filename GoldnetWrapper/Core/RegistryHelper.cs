@@ -36,7 +36,7 @@ public class RegistryHelper
             if (value == null)
             {
                 SetValue(key, string.Empty, subKey); // Use SetValue to create a default entry
-                return null;
+                return string.Empty;
             }
 
             // Automatically convert DWORD (0 or 1) to boolean

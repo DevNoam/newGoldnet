@@ -75,11 +75,18 @@ namespace GoldnetWrapper.Forms
                 RegistryHelper.SetValue("TGMSPath", TGMSPath);
                 changesMade++;
             }
-            if (TGMSManager.SetEDIReceiveLocation(DatabaseDir))
+
+            if (!string.IsNullOrEmpty(RegistryVariables.TGMSPath) && TGMSManager.SetEDIReceiveLocation(DatabaseDir))
             { 
                 RegistryHelper.SetValue("DatabaseDir", DatabaseDir);
                 changesMade++;
             }
+            else if (string.IsNullOrEmpty(RegistryVariables.TGMSPath))
+            {
+                RegistryHelper.SetValue("DatabaseDir", DatabaseDir);
+                changesMade++;
+            }
+
             if (DownloadThreads != RegistryVariables.downloadThreadsTGMS)
             {
                 if (TGMSManager.EditAppPropertiesKey("download-threads-number", DownloadThreads.ToString()))

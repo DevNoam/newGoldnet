@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MultiBill.exe" size="3688960">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MultiBill.exe" size="3689984">
       <assemblyIdentity name="MultiBill" version="2024.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>svdj/JagsCjEASezRhEIG2ElfovAdTcaU7M4PslvHQg=</dsig:DigestValue>
+        <dsig:DigestValue>hHdvLZjOQZaeARAQ1xcPZZ9y5dxkW4KU84NKDolyjWc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4cPwrq2ggUyU3Pa+vvrwdIqeI/OjhUzzg4ktkFcJqVs=</dsig:DigestValue>
+        <dsig:DigestValue>IUb99hpRHirTzmGpvM0rg0iWC0tOhSbPq3eShVV9urY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -75,13 +75,13 @@
       <dsig:DigestValue>K0hErbzcMylBu3HwrCDJWpkPPBdiJYJ/hXeNgcpPWxc=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="MultiBill.exe.config" size="824">
+  <file name="MultiBill.exe.config" size="1521">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>zVj1xcyYQmoOm20XnEzXg7DQGHdx1dWc3cbPosXWYvY=</dsig:DigestValue>
+      <dsig:DigestValue>c/OsMLExkNXU302loUlzfl2PB5rxNOabEdnrruSOT1Y=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

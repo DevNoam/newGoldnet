@@ -297,8 +297,20 @@ namespace GoldnetWrapper
             }
         }
 
-        private void ECurrency_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ECurrency.exe"));
-        private void EAccount_Click(object sender, EventArgs e) => Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "EAccount.exe"));
+        private void ECurrency_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(RegistryVariables.DatabaseDir))
+                Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "ECurrency.exe"));
+            else
+                MessageBox.Show("בסיס הנתונים לא הוגדר");
+        }
+        private void EAccount_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(RegistryVariables.DatabaseDir))
+                Helpers.RunExternalApp(Path.Combine(Application.StartupPath, "EAccount.exe"));
+            else
+                MessageBox.Show("בסיס הנתונים לא הוגדר");
+        }
 
         private void MenuStripSupport_Click(object sender, EventArgs e)
         {
