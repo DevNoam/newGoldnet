@@ -89,13 +89,20 @@ public class RegistryHelper
     /// </summary>
     public static void LoadVariables()
     {
-        RegistryVariables.DatabaseDir = RegistryHelper.GetValue("DatabaseDir").ToString();
-        RegistryVariables.TGMSPath = RegistryHelper.GetValue("TGMSPath").ToString();
-        RegistryVariables.RawCurrencyDir = RegistryHelper.GetValue("RawCurrencyDir").ToString();
-        //Read 1 or 0 from registry and convert to bool
-        RegistryVariables.CheckBalance = Convert.ToInt32(RegistryHelper.GetValue("CheckBalance")) == 1 ? true : false;
-        RegistryVariables.BackupExport = Convert.ToInt32(RegistryHelper.GetValue("BackupExport")) == 1 ? true : false;
-        RegistryVariables.RawExportECurency = Convert.ToInt32(RegistryHelper.GetValue("RawExportECurency")) == 1 ? true : false;
-        RegistryVariables.AutoFetchData = Convert.ToInt32(RegistryHelper.GetValue("AutoFetchData")) == 1 ? true : false;
+        try
+        {
+            RegistryVariables.DatabaseDir = RegistryHelper.GetValue("DatabaseDir").ToString();
+            RegistryVariables.TGMSPath = RegistryHelper.GetValue("TGMSPath").ToString();
+            RegistryVariables.RawCurrencyDir = RegistryHelper.GetValue("RawCurrencyDir").ToString();
+            //Read 1 or 0 from registry and convert to bool
+            RegistryVariables.CheckBalance = Convert.ToInt32(RegistryHelper.GetValue("CheckBalance")) == 1 ? true : false;
+            RegistryVariables.BackupExport = Convert.ToInt32(RegistryHelper.GetValue("BackupExport")) == 1 ? true : false;
+            RegistryVariables.RawExportECurency = Convert.ToInt32(RegistryHelper.GetValue("RawExportECurency")) == 1 ? true : false;
+            RegistryVariables.AutoFetchData = Convert.ToInt32(RegistryHelper.GetValue("AutoFetchData")) == 1 ? true : false;
+        }
+        catch 
+        { 
+            MessageBox.Show("Faild to read registry variables.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

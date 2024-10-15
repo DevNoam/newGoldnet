@@ -13,6 +13,10 @@ namespace GoldnetWrapper
     {
         public static Label StatusLabelVar;
         bool isFetching = false;
+        Process batchProcess = new Process();
+        string logFilePath = Path.Combine(Application.StartupPath, ReadOnlyVariables.logName);
+
+
         public Main()
         {
             InitializeComponent();
@@ -42,7 +46,12 @@ namespace GoldnetWrapper
 
         private void Logo_Click(object sender, EventArgs e) => Helpers.OpenURL(ReadOnlyVariables.bezeqIntWebsite);
 
-        private void ExitApp_Click(object sender, EventArgs e) => Helpers.CloseApplication();
+        private void ExitApp_Click(object sender, EventArgs e)
+        {
+            //Find go.bat and kill it
+            batchProcess.Kill();
+            Helpers.CloseApplication();
+        }
 
         private void GetSupport_Click(object sender, EventArgs e)
         {
@@ -81,13 +90,12 @@ namespace GoldnetWrapper
         private void FetchData()
         {
             //Disable buttons
-            string logFilePath = Path.Combine(Application.StartupPath, ReadOnlyVariables.logName);
             LogMessage($"Log started: {DateTime.Now}", false);
 
 
             ChangeButtonsState(false);
             // Step 1: Start the batch file process
-            Process batchProcess = new Process();
+            System.Timers.Timer timeoutTimer;
             batchProcess.StartInfo.FileName = Path.Combine(Application.StartupPath, "go.bat");
             batchProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             batchProcess.StartInfo.CreateNoWindow = true;
@@ -103,7 +111,6 @@ namespace GoldnetWrapper
 
             bool isFetchingEnded = false;
             bool displayTGMSLogs = false;
-            System.Timers.Timer timeoutTimer;
             int timeoutInterval = 5000;
 
 
@@ -214,22 +221,6 @@ namespace GoldnetWrapper
                 batchProcess.Kill();
             }
 
-            void LogMessage(string message, bool cleanLog = true)
-            {
-                try
-                {
-                    // Append the message to the fetchLog.txt file
-                    using (StreamWriter writer = new StreamWriter(logFilePath, cleanLog))
-                    {
-                        writer.WriteLine($"{message}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Handle logging errors (optional)
-                    MessageBox.Show($"Failed to log message: {ex.Message}", "Logging Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
         void ChangeButtonsState(bool enabled)
         {
@@ -240,23 +231,23 @@ namespace GoldnetWrapper
             OpenSettings.Enabled = enabled;
             isFetching = !enabled;
         }
-
-        private static bool CheckInternetConnection(string host, int port)
+        void LogMessage(string message, bool cleanLog = true)
         {
             try
             {
-                using (var client = new TcpClient())
+                // Append the message to the fetchLog.txt file
+                using (StreamWriter writer = new StreamWriter(logFilePath, cleanLog))
                 {
-                    var result = client.BeginConnect(host, port, null, null);
-                    var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(3));
-                    return success;
+                    writer.WriteLine($"{message}");
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                // Handle logging errors (optional)
+                MessageBox.Show($"Failed to log message: {ex.Message}", "Logging Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private static void ShowTimeoutError()
         {
             DialogResult result = MessageBox.Show("התהליך נתקע, יש ליצור קשר עם התמיכה.","Timeout Error",
@@ -317,13 +308,13 @@ namespace GoldnetWrapper
             Support support = new Support();
             support.ShowDialog();
         }
-
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (isFetching)
             {
-                e.Cancel = true;
-                return;
+                LogMessage("------------------------------------");
+                LogMessage("USER TERMINATED THE FETCHING PROCESS");
+                LogMessage("------------------------------------");
             }
         }
     }

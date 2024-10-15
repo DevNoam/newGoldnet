@@ -81,7 +81,7 @@ namespace GoldnetWrapper.Forms
                 RegistryHelper.SetValue("DatabaseDir", DatabaseDir);
                 changesMade++;
             }
-            else if (string.IsNullOrEmpty(RegistryVariables.TGMSPath))
+            else
             {
                 RegistryHelper.SetValue("DatabaseDir", DatabaseDir);
                 changesMade++;
@@ -210,7 +210,7 @@ namespace GoldnetWrapper.Forms
                 dialog.Dispose();
             }
 
-            if (!Directory.EnumerateFileSystemEntries(dbPath.Text).Any())
+            if (!String.IsNullOrWhiteSpace(dbPath.Text) && !Directory.EnumerateFileSystemEntries(dbPath.Text).Any())
                 MessageBox.Show("תיקייה זו ריקה.", "התראה", MessageBoxButtons.OK);
         }
 
